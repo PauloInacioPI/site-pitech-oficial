@@ -20,6 +20,10 @@ dist-ssr
 server/uploads/*
 !server/uploads/.gitkeep
 
+# Schema / SQL
+schema.sql
+*.sql
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
