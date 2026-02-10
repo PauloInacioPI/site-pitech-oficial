@@ -1,0 +1,240 @@
+import { useState, useEffect } from 'react'
+import { Link } from 'react-router-dom'
+import { API, getToken } from '../api'
+import '../styles/Dashboard.css'
+
+export default function Dashboard() {
+  const [stats, setStats] = useState(null)
+  const [recentBookings, setRecentBookings] = useState([])
+  const [revenueByTrip, setRevenueByTrip] = useState([])
+  const [loading, setLoading] = useState(true)
+
+  useEffect(() => {
+    const headers = { Authorization: `Bearer ${getToken()}` }
+    Promise.all([
+      fetch(`${API}/dashboard/stats`, { headers }).then(r => r.json()),
+      fetch(`${API}/dashboard/recent-bookings`, { headers }).then(r => r.json()),
+      fetch(`${API}/dashboard/revenue-by-trip`, { headers }).then(r => r.json()),
+    ]).then(([statsData, bookingsData, revenueData]) => {
+      setStats(statsData)
+      setRecentBookings(Array.isArray(bookingsData) ? bookingsData : [])
+      setRevenueByTrip(Array.isArray(revenueData) ? revenueData : [])
+      setLoading(false)
+    }).catch(() => setLoading(false))
+  }, [])
+
+  if (loading) return (
+    <div className="admin-loading">
+      <i className="fas fa-spinner fa-spin"></i>
+      <span>Carregando...</span>
+    </div>
+  )
+
+  const formatCurrency = (val) => {
+    return parseFloat(val || 0).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })
+  }
+
+  const formatDate = (d) => d ? new Date(d).toLocaleDateString('pt-BR') : '-'
+
+  return (
+    <div className="dashboard">
+      <div className="page-header">
+        <div>
+          <h1>Dashboard</h1>
+          <p>Visao geral do sistema</p>
+        </div>
+      </div>
+
+      {/* ===== STAT CARDS ===== */}
+      <div className="stats-cards">
+        <div className="stat-card stat-card-gold">
+          <div className="stat-card-icon"><i className="fas fa-chart-line"></i></div>
+          <div className="stat-card-info">
+            <span className="stat-card-value">{formatCurrency(stats?.revenue?.total)}</span>
+            <span className="stat-card-label">Faturamento Geral</span>
+            <span className="stat-card-sub">{formatCurrency(stats?.revenue?.paid)} recebido</span>
+          </div>
+        </div>
+
+        <div className="stat-card stat-card-teal">
+          <div className="stat-card-icon"><i className="fas fa-bus"></i></div>
+          <div className="stat-card-info">
+            <span className="stat-card-value">{formatCurrency(stats?.openExcursions?.total)}</span>
+            <span className="stat-card-label">Excursoes em Aberto</span>
+            <span className="stat-card-sub">{formatCurrency(stats?.openExcursions?.paid)} recebido</span>
+          </div>
+        </div>
+
+        <div className="stat-card stat-card-purple">
+          <div className="stat-card-icon"><i className="fas fa-users"></i></div>
+          <div className="stat-card-info">
+            <span className="stat-card-value">{stats?.passengers || 0}</span>
+            <span className="stat-card-label">Pessoas Reservadas</span>
+            <span className="stat-card-sub">em {stats?.bookings?.total || 0} reservas</span>
+          </div>
+        </div>
+
+        <div className="stat-card stat-card-blue">
+          <div className="stat-card-icon"><i className="fas fa-route"></i></div>
+          <div className="stat-card-info">
+            <span className="stat-card-value">{stats?.trips?.total || 0}</span>
+            <span className="stat-card-label">Viagens</span>
+            <span className="stat-card-sub">{stats?.trips?.active || 0} ativas</span>
+          </div>
+        </div>
+
+        <div className="stat-card stat-card-green">
+          <div className="stat-card-icon"><i className="fas fa-ticket-alt"></i></div>
+          <div className="stat-card-info">
+            <span className="stat-card-value">{stats?.bookings?.total || 0}</span>
+            <span className="stat-card-label">Reservas</span>
+            <span className="stat-card-sub">{stats?.bookings?.confirmed || 0} confirmadas</span>
+          </div>
+        </div>
+      </div>
+
+      {/* ===== FATURAMENTO POR VIAGEM ===== */}
+      <div className="dashboard-card revenue-by-trip-card">
+        <div className="card-header">
+          <h3><i className="fas fa-suitcase-rolling"></i> Faturamento por Viagem</h3>
+        </div>
+        <div className="card-body">
+          {revenueByTrip.length === 0 ? (
+            <div className="empty-state">
+              <i className="fas fa-inbox"></i>
+              <p>Nenhuma viagem ativa</p>
+            </div>
+          ) : (
+            <div className="trip-revenue-list">
+              {revenueByTrip.map(trip => {
+                const paidPercent = trip.total_revenue > 0
+                  ? Math.round((trip.paid_revenue / trip.total_revenue) * 100)
+                  : 0
+                const occupancyPercent = trip.total_seats > 0
+                  ? Math.round((trip.passenger_count / trip.total_seats) * 100)
+                  : 0
+                const isOpen = new Date(trip.departure_date) >= new Date(new Date().toDateString())
+
+                return (
+                  <div key={trip.id} className="trip-revenue-item">
+                    <div className="trip-revenue-header">
+                      <div className="trip-revenue-title">
+                        <strong>{trip.title}</strong>
+                        <span className="trip-revenue-dest">
+                          <i className="fas fa-map-marker-alt"></i> {trip.destination}
+                        </span>
+                      </div>
+                      <div className="trip-revenue-meta">
+                        {isOpen && <span className="badge badge-confirmado">Em aberto</span>}
+                        {!isOpen && <span className="badge badge-cancelado">Encerrada</span>}
+                        <span className="trip-revenue-date">
+                          <i className="fas fa-calendar"></i> {formatDate(trip.departure_date)}
+                        </span>
+                      </div>
+                    </div>
+
+                    <div className="trip-revenue-stats">
+                      <div className="trip-revenue-amount">
+                        <span className="trip-revenue-total">{formatCurrency(trip.total_revenue)}</span>
+                        <span className="trip-revenue-detail">
+                          {formatCurrency(trip.paid_revenue)} pago &bull; {formatCurrency(trip.total_revenue - trip.paid_revenue)} pendente
+                        </span>
+                      </div>
+                      <div className="trip-revenue-people">
+                        <i className="fas fa-users"></i> {trip.passenger_count} / {trip.total_seats} pessoas
+                      </div>
+                    </div>
+
+                    <div className="trip-revenue-bars">
+                      <div className="revenue-bar">
+                        <div className="revenue-bar-label">Pagamento</div>
+                        <div className="revenue-bar-track">
+                          <div className="revenue-bar-fill revenue-bar-paid" style={{ width: `${paidPercent}%` }}></div>
+                        </div>
+                        <div className="revenue-bar-percent">{paidPercent}%</div>
+                      </div>
+                      <div className="revenue-bar">
+                        <div className="revenue-bar-label">Ocupacao</div>
+                        <div className="revenue-bar-track">
+                          <div className="revenue-bar-fill revenue-bar-occupancy" style={{ width: `${occupancyPercent}%` }}></div>
+                        </div>
+                        <div className="revenue-bar-percent">{occupancyPercent}%</div>
+                      </div>
+                    </div>
+                  </div>
+                )
+              })}
+            </div>
+          )}
+        </div>
+      </div>
+
+      {/* ===== RESERVAS RECENTES + ACESSO RAPIDO ===== */}
+      <div className="dashboard-grid">
+        <div className="dashboard-card">
+          <div className="card-header">
+            <h3><i className="fas fa-clock"></i> Reservas Recentes</h3>
+            <Link to="/admin/reservas" className="card-link">Ver todas</Link>
+          </div>
+          <div className="card-body">
+            {recentBookings.length === 0 ? (
+              <div className="empty-state">
+                <i className="fas fa-inbox"></i>
+                <p>Nenhuma reserva ainda</p>
+              </div>
+            ) : (
+              <table className="admin-table">
+                <thead>
+                  <tr>
+                    <th>Codigo</th>
+                    <th>Cliente</th>
+                    <th>Viagem</th>
+                    <th>Status</th>
+                    <th>Valor</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {recentBookings.map(b => (
+                    <tr key={b.id}>
+                      <td><span className="booking-code">{b.booking_code}</span></td>
+                      <td>{b.customer_name}</td>
+                      <td>{b.trip_title || '-'}</td>
+                      <td><span className={`badge badge-${b.status}`}>{b.status}</span></td>
+                      <td>{formatCurrency(b.total_price)}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            )}
+          </div>
+        </div>
+
+        <div className="dashboard-card dashboard-card-small">
+          <div className="card-header">
+            <h3><i className="fas fa-bolt"></i> Acesso Rapido</h3>
+          </div>
+          <div className="card-body">
+            <div className="quick-actions">
+              <Link to="/admin/viagens" className="quick-action">
+                <div className="quick-action-icon green"><i className="fas fa-plus"></i></div>
+                <span>Nova Viagem</span>
+              </Link>
+              <Link to="/admin/reservas" className="quick-action">
+                <div className="quick-action-icon blue"><i className="fas fa-list"></i></div>
+                <span>Ver Reservas</span>
+              </Link>
+              <Link to="/admin/configuracoes" className="quick-action">
+                <div className="quick-action-icon gold"><i className="fas fa-cog"></i></div>
+                <span>Configuracoes</span>
+              </Link>
+              <a href="/" target="_blank" className="quick-action">
+                <div className="quick-action-icon purple"><i className="fas fa-globe"></i></div>
+                <span>Ver Site</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  )
+}

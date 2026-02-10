@@ -1,0 +1,104 @@
+/* ===== BOOKINGS PAGE ===== */
+.client-cell {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.client-cell strong {
+  color: #1f2937;
+  font-size: 0.88rem;
+}
+
+.client-cell small {
+  color: #9ca3af;
+  font-size: 0.75rem;
+}
+
+/* Detail */
+.detail-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  margin-bottom: 25px;
+}
+
+.detail-section {
+  margin-bottom: 20px;
+}
+
+.detail-section h4 {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #1f2937;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.detail-section h4 i {
+  color: #1a4b8c;
+}
+
+.detail-info p {
+  font-size: 0.88rem;
+  color: #374151;
+  margin-bottom: 6px;
+}
+
+.detail-info strong {
+  color: #6b7280;
+  font-weight: 600;
+}
+
+.detail-actions-row {
+  display: flex;
+  gap: 30px;
+  margin-bottom: 25px;
+  flex-wrap: wrap;
+}
+
+.detail-action-group label {
+  display: block;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: #6b7280;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 8px;
+}
+
+.btn-group {
+  display: flex;
+  gap: 6px;
+}
+
+.btn-pendente { background: #fef3c7 !important; color: #92400e !important; }
+.btn-confirmado { background: #dbeafe !important; color: #1e40af !important; }
+.btn-cancelado { background: #fee2e2 !important; color: #991b1b !important; }
+.btn-pay-aguardando { background: #fef3c7 !important; color: #92400e !important; }
+.btn-pay-pago { background: #dbeafe !important; color: #1e40af !important; }
+.btn-pay-reembolsado { background: #e0e7ff !important; color: #3730a3 !important; }
+
+.seat-badge {
+  display: inline-block;
+  padding: 3px 10px;
+  background: #f3f4f6;
+  color: #374151;
+  border-radius: 6px;
+  font-weight: 700;
+  font-size: 0.82rem;
+  font-family: 'Courier New', monospace;
+}
+
+@media (max-width: 640px) {
+  .detail-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .detail-actions-row {
+    flex-direction: column;
+    gap: 15px;
+  }
+}

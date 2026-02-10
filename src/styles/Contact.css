@@ -1,0 +1,63 @@
+.cta-section {
+  padding: 80px 0;
+  background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+  color: var(--white);
+}
+
+.cta-inner {
+  text-align: center;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.cta-inner h2 {
+  font-size: 2.2rem;
+  font-weight: 800;
+  margin-bottom: 15px;
+}
+
+.cta-inner > p {
+  color: rgba(255, 255, 255, 0.8);
+  margin-bottom: 35px;
+  font-size: 1.05rem;
+}
+
+.cta-form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  justify-content: center;
+}
+
+.cta-input {
+  flex: 1;
+  min-width: 200px;
+  padding: 14px 22px;
+  border-radius: 50px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--white);
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.95rem;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+.cta-input::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.cta-input:focus {
+  border-color: var(--accent);
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.cta-btn {
+  flex: 0 0 auto;
+}
+
+@media (max-width: 768px) {
+  .cta-form { flex-direction: column; }
+  .cta-input { min-width: auto; }
+  .cta-inner h2 { font-size: 1.6rem; }
+}
