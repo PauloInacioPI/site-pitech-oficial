@@ -76,10 +76,10 @@ router.get('/:id/stats', async (req, res) => {
 
 router.post('/', async (req, res) => {
   try {
-    const { title, destination, description, price, original_price, duration, departure_date, return_date, image_url, category, total_seats, seat_rows, seats_per_row, bate_volta, telefone } = req.body
+    const { title, destination, description, price, original_price, duration, departure_date, return_date, image_url, category, total_seats, seat_rows, seats_per_row, bate_volta, telefone, deposit_percent } = req.body
     const [result] = await pool.query(
-      'INSERT INTO trips (title, destination, description, price, original_price, duration, departure_date, return_date, image_url, category, total_seats, seat_rows, seats_per_row, bate_volta, telefone) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
-      [title, destination, description, price, original_price, duration, departure_date, return_date, image_url, category, total_seats || 44, seat_rows || 11, seats_per_row || 4, bate_volta || 0, telefone]
+      'INSERT INTO trips (title, destination, description, price, original_price, duration, departure_date, return_date, image_url, category, total_seats, deposit_percent, seat_rows, seats_per_row, bate_volta, telefone) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
+      [title, destination, description, price, original_price, duration, departure_date, return_date, image_url, category, total_seats || 44, deposit_percent ?? 100, seat_rows || 11, seats_per_row || 4, bate_volta || 0, telefone]
     )
 
     const tripId = result.insertId
@@ -104,10 +104,10 @@ router.post('/', async (req, res) => {
 
 router.put('/:id', async (req, res) => {
   try {
-    const { title, destination, description, price, original_price, duration, departure_date, return_date, image_url, category, total_seats, bate_volta, telefone, is_active } = req.body
+    const { title, destination, description, price, original_price, duration, departure_date, return_date, image_url, category, total_seats, bate_volta, telefone, is_active, deposit_percent } = req.body
     await pool.query(
-      'UPDATE trips SET title=?, destination=?, description=?, price=?, original_price=?, duration=?, departure_date=?, return_date=?, image_url=?, category=?, total_seats=?, bate_volta=?, telefone=?, is_active=? WHERE id=?',
-      [title, destination, description, price, original_price, duration, departure_date, return_date, image_url, category, total_seats, bate_volta, telefone, is_active, req.params.id]
+      'UPDATE trips SET title=?, destination=?, description=?, price=?, original_price=?, duration=?, departure_date=?, return_date=?, image_url=?, category=?, total_seats=?, deposit_percent=?, bate_volta=?, telefone=?, is_active=? WHERE id=?',
+      [title, destination, description, price, original_price, duration, departure_date, return_date, image_url, category, total_seats, deposit_percent ?? 100, bate_volta, telefone, is_active, req.params.id]
     )
     res.json({ message: 'Viagem atualizada com sucesso' })
   } catch (err) {

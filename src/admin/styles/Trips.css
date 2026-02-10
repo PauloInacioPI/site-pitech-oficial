@@ -1,3 +1,20 @@
+/* ===== DEPOSIT INPUT ===== */
+.deposit-input-wrap {
+  position: relative;
+}
+
+.deposit-input-wrap input {
+  padding-right: 10px;
+}
+
+.deposit-hint {
+  display: block;
+  margin-top: 4px;
+  font-size: 0.78rem;
+  color: var(--accent, #e8a838);
+  font-weight: 600;
+}
+
 /* ===== TRIPS PAGE ===== */
 .trip-cell {
   display: flex;

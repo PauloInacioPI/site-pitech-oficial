@@ -2,6 +2,18 @@ import { useState, useEffect, useRef } from 'react'
 import { API, getToken } from '../api'
 import '../styles/Settings.css'
 
+const emptyStripeAccount = {
+  business_name: '', owner_name: '', cpf_cnpj: '', birth_date: '', email: '', phone: '',
+  address_line: '', address_city: '', address_state: '', address_postal: '',
+  bank_name: '', bank_agency: '', bank_account: '', bank_account_type: 'checking',
+}
+
+const bankList = [
+  'Banco do Brasil (001)', 'Bradesco (237)', 'Itau (341)', 'Santander (033)',
+  'Caixa Economica (104)', 'Nubank (260)', 'Inter (077)', 'C6 Bank (336)',
+  'PagBank (290)', 'Mercado Pago (323)', 'Outro',
+]
+
 export default function Settings() {
   const [settings, setSettings] = useState(null)
   const [loading, setLoading] = useState(true)
@@ -15,6 +27,13 @@ export default function Settings() {
   const bannerFileRef = useRef(null)
   const travelerFileRef = useRef(null)
 
+  // Stripe Account
+  const [stripeAccount, setStripeAccount] = useState(emptyStripeAccount)
+  const [stripeStatus, setStripeStatus] = useState(null)
+  const [savingStripe, setSavingStripe] = useState(false)
+  const [connectingStripe, setConnectingStripe] = useState(false)
+  const [stripeMsg, setStripeMsg] = useState(null)
+
   useEffect(() => {
     fetch(`${API}/settings`, { headers: { Authorization: `Bearer ${getToken()}` } })
       .then(r => r.json())
@@ -25,7 +44,73 @@ export default function Settings() {
         setLoading(false)
       })
       .catch(() => setLoading(false))
+
+    // Carregar dados Stripe
+    fetch(`${API}/stripe-account`, { headers: { Authorization: `Bearer ${getToken()}` } })
+      .then(r => r.json())
+      .then(data => {
+        if (data) {
+          setStripeAccount(prev => ({ ...prev, ...data }))
+          setStripeStatus({
+            has_account: data.has_stripe_account,
+            status: data.status,
+            charges_enabled: data.stripe_charges_enabled,
+            payouts_enabled: data.stripe_payouts_enabled,
+          })
+        }
+      })
+      .catch(() => {})
   }, [])
+
+  const saveStripeAccount = async () => {
+    setSavingStripe(true)
+    setStripeMsg(null)
+    try {
+      const res = await fetch(`${API}/stripe-account`, {
+        method: 'PUT',
+        headers: { Authorization: `Bearer ${getToken()}`, 'Content-Type': 'application/json' },
+        body: JSON.stringify(stripeAccount),
+      })
+      const data = await res.json()
+      if (!res.ok) throw new Error(data.error)
+      setStripeMsg({ type: 'success', text: 'Dados salvos com sucesso!' })
+      setTimeout(() => setStripeMsg(null), 3000)
+    } catch (err) {
+      setStripeMsg({ type: 'error', text: err.message })
+    }
+    setSavingStripe(false)
+  }
+
+  const connectStripe = async () => {
+    if (!confirm('Confirma a criacao da conta no Stripe com os dados informados?')) return
+    setConnectingStripe(true)
+    setStripeMsg(null)
+    try {
+      const res = await fetch(`${API}/stripe-account/create`, {
+        method: 'POST',
+        headers: { Authorization: `Bearer ${getToken()}` },
+      })
+      const data = await res.json()
+      if (!res.ok) throw new Error(data.error)
+      setStripeMsg({ type: 'success', text: 'Conta conectada ao Stripe! Aguarde a verificacao.' })
+      setStripeStatus({ has_account: true, status: 'verificando', charges_enabled: data.charges_enabled, payouts_enabled: data.payouts_enabled })
+    } catch (err) {
+      setStripeMsg({ type: 'error', text: err.message })
+    }
+    setConnectingStripe(false)
+  }
+
+  const refreshStripeStatus = async () => {
+    try {
+      const res = await fetch(`${API}/stripe-account/status`, { headers: { Authorization: `Bearer ${getToken()}` } })
+      const data = await res.json()
+      setStripeStatus({ has_account: true, status: data.status, charges_enabled: data.charges_enabled, payouts_enabled: data.payouts_enabled })
+      setStripeMsg({ type: 'success', text: `Status: ${data.status}` })
+      setTimeout(() => setStripeMsg(null), 3000)
+    } catch (err) {
+      setStripeMsg({ type: 'error', text: err.message })
+    }
+  }
 
   const handleSave = async (e) => {
     e.preventDefault()
@@ -418,6 +503,148 @@ export default function Settings() {
           </button>
         </div>
       </form>
+
+      {/* Stripe Connect / Dados Bancários */}
+      <div className="admin-card settings-card stripe-card">
+        <div className="card-header">
+          <h3><i className="fab fa-stripe-s"></i> Dados Bancários / Stripe Connect</h3>
+          {stripeStatus?.has_account && (
+            <button type="button" className="btn-admin btn-admin-outline btn-admin-sm" onClick={refreshStripeStatus}>
+              <i className="fas fa-sync-alt"></i> Atualizar Status
+            </button>
+          )}
+        </div>
+        <div className="card-body">
+          {stripeMsg && (
+            <div className={`stripe-msg stripe-msg-${stripeMsg.type}`}>
+              <i className={`fas ${stripeMsg.type === 'success' ? 'fa-check-circle' : 'fa-exclamation-circle'}`}></i>
+              {stripeMsg.text}
+            </div>
+          )}
+
+          {stripeStatus?.has_account && (
+            <div className="stripe-status-cards">
+              <div className={`stripe-status-badge stripe-status-${stripeStatus.status}`}>
+                <i className={`fas ${stripeStatus.status === 'ativo' ? 'fa-check-circle' : stripeStatus.status === 'restrito' ? 'fa-ban' : stripeStatus.status === 'verificando' ? 'fa-clock' : 'fa-hourglass-half'}`}></i>
+                <div>
+                  <span className="stripe-status-label">Status</span>
+                  <span className="stripe-status-value">{stripeStatus.status === 'ativo' ? 'Ativo' : stripeStatus.status === 'verificando' ? 'Verificando' : stripeStatus.status === 'restrito' ? 'Restrito' : 'Pendente'}</span>
+                </div>
+              </div>
+              <div className={`stripe-status-badge ${stripeStatus.charges_enabled ? 'stripe-status-ativo' : 'stripe-status-pendente'}`}>
+                <i className={`fas ${stripeStatus.charges_enabled ? 'fa-credit-card' : 'fa-times-circle'}`}></i>
+                <div>
+                  <span className="stripe-status-label">Pagamentos</span>
+                  <span className="stripe-status-value">{stripeStatus.charges_enabled ? 'Habilitado' : 'Desabilitado'}</span>
+                </div>
+              </div>
+              <div className={`stripe-status-badge ${stripeStatus.payouts_enabled ? 'stripe-status-ativo' : 'stripe-status-pendente'}`}>
+                <i className={`fas ${stripeStatus.payouts_enabled ? 'fa-university' : 'fa-times-circle'}`}></i>
+                <div>
+                  <span className="stripe-status-label">Repasses</span>
+                  <span className="stripe-status-value">{stripeStatus.payouts_enabled ? 'Habilitado' : 'Desabilitado'}</span>
+                </div>
+              </div>
+            </div>
+          )}
+
+          <div className="stripe-section-title"><i className="fas fa-building"></i> Dados da Empresa</div>
+          <div className="form-row">
+            <div className="form-group">
+              <label>Nome da Empresa</label>
+              <input type="text" value={stripeAccount.business_name || ''} onChange={e => setStripeAccount({ ...stripeAccount, business_name: e.target.value })} placeholder="Ex: Jotta Excursões Ltda" />
+            </div>
+            <div className="form-group">
+              <label>Nome do Responsável</label>
+              <input type="text" value={stripeAccount.owner_name || ''} onChange={e => setStripeAccount({ ...stripeAccount, owner_name: e.target.value })} placeholder="Nome completo" />
+            </div>
+          </div>
+          <div className="form-row">
+            <div className="form-group">
+              <label>CPF / CNPJ</label>
+              <input type="text" value={stripeAccount.cpf_cnpj || ''} onChange={e => setStripeAccount({ ...stripeAccount, cpf_cnpj: e.target.value })} placeholder="Somente números" />
+            </div>
+            <div className="form-group">
+              <label>Data de Nascimento</label>
+              <input type="date" value={stripeAccount.birth_date || ''} onChange={e => setStripeAccount({ ...stripeAccount, birth_date: e.target.value })} />
+            </div>
+          </div>
+          <div className="form-row">
+            <div className="form-group">
+              <label>E-mail</label>
+              <input type="email" value={stripeAccount.email || ''} onChange={e => setStripeAccount({ ...stripeAccount, email: e.target.value })} placeholder="email@empresa.com" />
+            </div>
+            <div className="form-group">
+              <label>Telefone</label>
+              <input type="text" value={stripeAccount.phone || ''} onChange={e => setStripeAccount({ ...stripeAccount, phone: e.target.value })} placeholder="+5521999999999" />
+            </div>
+          </div>
+
+          <div className="stripe-section-title"><i className="fas fa-map-marker-alt"></i> Endereço</div>
+          <div className="form-group">
+            <label>Rua / Logradouro</label>
+            <input type="text" value={stripeAccount.address_line || ''} onChange={e => setStripeAccount({ ...stripeAccount, address_line: e.target.value })} placeholder="Rua, número, complemento" />
+          </div>
+          <div className="form-row form-row-3">
+            <div className="form-group">
+              <label>Cidade</label>
+              <input type="text" value={stripeAccount.address_city || ''} onChange={e => setStripeAccount({ ...stripeAccount, address_city: e.target.value })} />
+            </div>
+            <div className="form-group">
+              <label>Estado</label>
+              <select value={stripeAccount.address_state || ''} onChange={e => setStripeAccount({ ...stripeAccount, address_state: e.target.value })}>
+                <option value="">Selecione</option>
+                {['AC','AL','AP','AM','BA','CE','DF','ES','GO','MA','MT','MS','MG','PA','PB','PR','PE','PI','RJ','RN','RS','RO','RR','SC','SP','SE','TO'].map(uf => (
+                  <option key={uf} value={uf}>{uf}</option>
+                ))}
+              </select>
+            </div>
+            <div className="form-group">
+              <label>CEP</label>
+              <input type="text" value={stripeAccount.address_postal || ''} onChange={e => setStripeAccount({ ...stripeAccount, address_postal: e.target.value })} placeholder="00000-000" />
+            </div>
+          </div>
+
+          <div className="stripe-section-title"><i className="fas fa-university"></i> Dados Bancários</div>
+          <div className="form-row">
+            <div className="form-group">
+              <label>Banco</label>
+              <select value={stripeAccount.bank_name || ''} onChange={e => setStripeAccount({ ...stripeAccount, bank_name: e.target.value })}>
+                <option value="">Selecione o banco</option>
+                {bankList.map(b => <option key={b} value={b}>{b}</option>)}
+              </select>
+            </div>
+            <div className="form-group">
+              <label>Tipo de Conta</label>
+              <select value={stripeAccount.bank_account_type || 'checking'} onChange={e => setStripeAccount({ ...stripeAccount, bank_account_type: e.target.value })}>
+                <option value="checking">Conta Corrente</option>
+                <option value="savings">Poupança</option>
+              </select>
+            </div>
+          </div>
+          <div className="form-row">
+            <div className="form-group">
+              <label>Agência</label>
+              <input type="text" value={stripeAccount.bank_agency || ''} onChange={e => setStripeAccount({ ...stripeAccount, bank_agency: e.target.value })} placeholder="0000" />
+            </div>
+            <div className="form-group">
+              <label>Conta</label>
+              <input type="text" value={stripeAccount.bank_account || ''} onChange={e => setStripeAccount({ ...stripeAccount, bank_account: e.target.value })} placeholder="00000-0" />
+            </div>
+          </div>
+
+          <div className="stripe-actions">
+            <button type="button" className="btn-admin btn-admin-primary" onClick={saveStripeAccount} disabled={savingStripe}>
+              {savingStripe ? <><i className="fas fa-spinner fa-spin"></i> Salvando...</> : <><i className="fas fa-save"></i> Salvar Dados</>}
+            </button>
+            {!stripeStatus?.has_account && (
+              <button type="button" className="btn-admin btn-stripe" onClick={connectStripe} disabled={connectingStripe}>
+                {connectingStripe ? <><i className="fas fa-spinner fa-spin"></i> Conectando...</> : <><i className="fab fa-stripe-s"></i> Conectar ao Stripe</>}
+              </button>
+            )}
+          </div>
+        </div>
+      </div>
     </div>
   )
 }

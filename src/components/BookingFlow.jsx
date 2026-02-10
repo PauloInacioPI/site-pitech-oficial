@@ -1,10 +1,13 @@
 import { useState, useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
 import '../styles/BookingFlow.css'
 
 const API = 'http://localhost:3002/api/public'
 
-export default function BookingFlow() {
+export default function BookingFlow({ showAll = false }) {
+  const navigate = useNavigate()
   const [trips, setTrips] = useState([])
+  const [isMobile, setIsMobile] = useState(false)
   const [step, setStep] = useState(null) // null=closed, detail, seats, checkout, payment, confirmation
   const [selectedTrip, setSelectedTrip] = useState(null)
   const [seats, setSeats] = useState([])
@@ -15,6 +18,13 @@ export default function BookingFlow() {
   const [booking, setBooking] = useState(null)
   const [loading, setLoading] = useState(false)
   const [copied, setCopied] = useState(false)
+
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth <= 768)
+    checkMobile()
+    window.addEventListener('resize', checkMobile)
+    return () => window.removeEventListener('resize', checkMobile)
+  }, [])
 
   useEffect(() => {
     fetch(`${API}/trips`).then(r => r.json()).then(data => {
@@ -190,12 +200,16 @@ export default function BookingFlow() {
     else if (step === 'checkout') setStep('seats')
   }
 
+  const limit = showAll ? Infinity : (isMobile ? 3 : 6)
+  const visibleTrips = trips.slice(0, limit)
+  const hasMore = trips.length > limit
+
   return (
-    <section className="booking-flow" id="excursoes">
+    <section className={`booking-flow ${showAll ? 'booking-flow-full' : ''}`} id="excursoes">
       <div className="container">
         <div className="section-header">
-          <p className="section-tag">Próximas Excursões</p>
-          <h2 className="section-title">Reserve Sua <span className="highlight">Aventura</span></h2>
+          <p className="section-tag">{showAll ? 'Todas as' : 'Próximas'} Excursões</p>
+          <h2 className="section-title">{showAll ? 'Nossas ' : 'Reserve Sua '}<span className="highlight">{showAll ? 'Excursões' : 'Aventura'}</span></h2>
         </div>
         {trips.length === 0 ? (
           <div className="bf-empty">
@@ -204,7 +218,7 @@ export default function BookingFlow() {
           </div>
         ) : (
           <div className="bf-trips-grid">
-            {trips.map(trip => (
+            {visibleTrips.map(trip => (
               <div key={trip.id} className="bf-trip-card" onClick={() => openTrip(trip)}>
                 <div className="bf-trip-img">
                   <img src={trip.image_url || 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=500&q=80'} alt={trip.title} />
@@ -237,6 +251,13 @@ export default function BookingFlow() {
                 </div>
               </div>
             ))}
+          </div>
+        )}
+        {hasMore && (
+          <div className="bf-ver-todas">
+            <button onClick={() => navigate('/excursoes')}>
+              Ver todas as excursões <i className="fas fa-arrow-right"></i>
+            </button>
           </div>
         )}
       </div>
@@ -451,14 +472,35 @@ export default function BookingFlow() {
               )}
 
               {/* PAGAMENTO */}
-              {step === 'payment' && booking && (
+              {step === 'payment' && booking && (() => {
+                const isPartial = booking.deposit_amount && parseFloat(booking.deposit_amount) < parseFloat(booking.total_price)
+                return (
                 <div className="bf-payment-modal">
                   <div className="bf-payment-header">
                     <div className="bf-payment-icon"><i className="fas fa-check-circle"></i></div>
                     <h2>Reserva Realizada!</h2>
                     <p>Código: <strong className="bf-code">{booking.booking_code}</strong></p>
                   </div>
+
+                  {isPartial && (
+                    <div className="bf-deposit-info">
+                      <div className="bf-deposit-row">
+                        <span>Valor total</span>
+                        <span>{formatCurrency(booking.total_price)}</span>
+                      </div>
+                      <div className="bf-deposit-row bf-deposit-highlight">
+                        <span><i className="fas fa-tag"></i> Entrada ({booking.deposit_percent}%)</span>
+                        <span>{formatCurrency(booking.deposit_amount)}</span>
+                      </div>
+                      <div className="bf-deposit-row bf-deposit-remaining">
+                        <span>Restante a pagar</span>
+                        <span>{formatCurrency(booking.total_price - booking.deposit_amount)}</span>
+                      </div>
+                    </div>
+                  )}
+
                   <h3 className="bf-payment-title">Escolha a forma de pagamento</h3>
+                  {isPartial && <p className="bf-payment-subtitle">Pagamento da entrada de {formatCurrency(booking.deposit_amount)}</p>}
                   <div className="bf-payment-methods">
                     <div className={`bf-pay-card ${payMethod === 'pix' ? 'active' : ''}`} onClick={generatePix}>
                       <div className="bf-pay-icon"><i className="fas fa-qrcode"></i></div>
@@ -504,7 +546,8 @@ export default function BookingFlow() {
                     </div>
                   )}
                 </div>
-              )}
+                )
+              })()}
 
               {/* SUCESSO STRIPE */}
               {step === 'stripe_success' && booking && selectedTrip && (

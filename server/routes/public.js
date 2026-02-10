@@ -86,17 +86,19 @@ router.post('/bookings', async (req, res) => {
       return res.status(400).json({ error: 'Alguns assentos já foram reservados. Tente novamente.' })
     }
 
-    // Buscar preço da viagem
-    const [[trip]] = await conn.query('SELECT price FROM trips WHERE id = ?', [trip_id])
+    // Buscar preço e porcentagem de entrada da viagem
+    const [[trip]] = await conn.query('SELECT price, deposit_percent FROM trips WHERE id = ?', [trip_id])
     const totalPrice = parseFloat(trip.price) * seat_ids.length
+    const depositPercent = parseInt(trip.deposit_percent) || 100
+    const depositAmount = Math.round((totalPrice * depositPercent / 100) * 100) / 100
 
     // Gerar código de reserva
     const bookingCode = 'JE' + Date.now().toString(36).toUpperCase() + Math.random().toString(36).substring(2, 5).toUpperCase()
 
     // Criar a reserva
     const [result] = await conn.query(
-      "INSERT INTO bookings (booking_code, trip_id, customer_name, customer_email, customer_phone, total_passengers, total_price, status, payment_status) VALUES (?, ?, ?, ?, ?, ?, ?, 'pendente', 'aguardando')",
-      [bookingCode, trip_id, customer_name, customer_email, customer_phone, seat_ids.length, totalPrice]
+      "INSERT INTO bookings (booking_code, trip_id, customer_name, customer_email, customer_phone, total_passengers, total_price, deposit_amount, status, payment_status) VALUES (?, ?, ?, ?, ?, ?, ?, ?, 'pendente', 'aguardando')",
+      [bookingCode, trip_id, customer_name, customer_email, customer_phone, seat_ids.length, totalPrice, depositAmount]
     )
     const bookingId = result.insertId
 
@@ -116,6 +118,8 @@ router.post('/bookings', async (req, res) => {
       booking_id: bookingId,
       booking_code: bookingCode,
       total_price: totalPrice,
+      deposit_amount: depositAmount,
+      deposit_percent: depositPercent,
       total_passengers: seat_ids.length,
     })
   } catch (err) {
@@ -137,10 +141,11 @@ router.post('/bookings/:id/pix', async (req, res) => {
     if (rows.length === 0) return res.status(404).json({ error: 'Reserva não encontrada' })
 
     const booking = rows[0]
+    const chargeAmount = parseFloat(booking.deposit_amount) || parseFloat(booking.total_price)
 
     // Gerar código PIX (simulado - em produção usaria API de pagamento)
     const pixKey = 'contato@jottaexcursoes.com.br'
-    const pixCode = `00020126580014BR.GOV.BCB.PIX0136${pixKey}5204000053039865404${booking.total_price.toFixed(2)}5802BR5913JOTTA EXCURSOES6009SAO PAULO62140510${booking.booking_code}6304`
+    const pixCode = `00020126580014BR.GOV.BCB.PIX0136${pixKey}5204000053039865404${chargeAmount.toFixed(2)}5802BR5913JOTTA EXCURSOES6009SAO PAULO62140510${booking.booking_code}6304`
 
     // Gerar QR Code
     const qrcode = await QRCode.toDataURL(pixCode, { width: 300, margin: 2 })
@@ -148,13 +153,15 @@ router.post('/bookings/:id/pix', async (req, res) => {
     // Salvar no banco
     await pool.query(
       "INSERT INTO payments (booking_id, pix_code, pix_qrcode, amount, status) VALUES (?, ?, ?, ?, 'pending') ON DUPLICATE KEY UPDATE pix_code=VALUES(pix_code), pix_qrcode=VALUES(pix_qrcode)",
-      [req.params.id, pixCode, qrcode, booking.total_price]
+      [req.params.id, pixCode, qrcode, chargeAmount]
     )
 
     res.json({
       pix_code: pixCode,
       pix_qrcode: qrcode,
-      amount: booking.total_price,
+      amount: chargeAmount,
+      total_price: parseFloat(booking.total_price),
+      deposit_amount: chargeAmount,
       booking_code: booking.booking_code,
     })
   } catch (err) {
@@ -199,6 +206,8 @@ router.post('/bookings/:id/checkout', async (req, res) => {
     if (rows.length === 0) return res.status(404).json({ error: 'Reserva nao encontrada' })
 
     const booking = rows[0]
+    const chargeAmount = parseFloat(booking.deposit_amount) || parseFloat(booking.total_price)
+    const isPartial = chargeAmount < parseFloat(booking.total_price)
 
     const sessionParams = {
       mode: 'payment',
@@ -208,9 +217,11 @@ router.post('/bookings/:id/checkout', async (req, res) => {
           currency: 'brl',
           product_data: {
             name: booking.title || 'Excursao',
-            description: `${booking.destination} - ${booking.total_passengers} passageiro(s) - Reserva ${booking.booking_code}`,
+            description: isPartial
+              ? `${booking.destination} - ${booking.total_passengers} passageiro(s) - Entrada de ${Math.round(chargeAmount / parseFloat(booking.total_price) * 100)}% - Reserva ${booking.booking_code}`
+              : `${booking.destination} - ${booking.total_passengers} passageiro(s) - Reserva ${booking.booking_code}`,
           },
-          unit_amount: Math.round(parseFloat(booking.total_price) * 100),
+          unit_amount: Math.round(chargeAmount * 100),
         },
         quantity: 1,
       }],
@@ -221,6 +232,17 @@ router.post('/bookings/:id/checkout', async (req, res) => {
 
     if (booking.image_url) {
       sessionParams.line_items[0].price_data.product_data.images = [booking.image_url]
+    }
+
+    // Verificar se existe conta conectada para repasse
+    const [acctRows] = await pool.query('SELECT stripe_account_id, stripe_charges_enabled FROM stripe_account WHERE id = 1')
+    const connectedAccount = acctRows[0]
+    if (connectedAccount?.stripe_account_id && connectedAccount.stripe_charges_enabled) {
+      sessionParams.payment_intent_data = {
+        transfer_data: {
+          destination: connectedAccount.stripe_account_id,
+        },
+      }
     }
 
     const stripe = getStripe()

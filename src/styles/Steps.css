@@ -4,7 +4,14 @@
   background: var(--white);
 }
 
-.steps-grid {
+.section-subtitle {
+  font-size: 1rem;
+  color: var(--gray-500);
+  margin-top: 8px;
+}
+
+/* ===== DESKTOP GRID ===== */
+.steps-desktop {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 30px;
@@ -12,11 +19,12 @@
 
 .step-card {
   text-align: center;
-  padding: 40px 25px;
+  padding: 40px 25px 35px;
   border-radius: var(--radius-md);
   background: var(--white);
   border: 1px solid var(--gray-200);
   transition: all 0.3s ease;
+  position: relative;
 }
 
 .step-card:hover {
@@ -25,40 +33,187 @@
   border-color: transparent;
 }
 
+.step-number {
+  position: absolute;
+  top: 14px;
+  left: 18px;
+  font-size: 0.85rem;
+  font-weight: 800;
+  color: var(--accent);
+  letter-spacing: 1px;
+}
+
 .step-icon {
-  width: 80px;
-  height: 80px;
+  width: 76px;
+  height: 76px;
   border-radius: 50%;
   background: linear-gradient(135deg, var(--primary), var(--primary-light));
   display: flex;
   align-items: center;
   justify-content: center;
   margin: 0 auto 20px;
-  font-size: 1.8rem;
+  font-size: 1.7rem;
   color: var(--white);
 }
 
 .step-card h3 {
-  font-size: 1.15rem;
+  font-size: 1.1rem;
   font-weight: 700;
   color: var(--gray-800);
-  margin-bottom: 10px;
+  margin-bottom: 8px;
 }
 
 .step-card p {
-  font-size: 0.9rem;
+  font-size: 0.88rem;
   color: var(--gray-500);
-  line-height: 1.7;
+  line-height: 1.65;
 }
 
+/* Connector arrow between cards */
+.step-connector {
+  position: absolute;
+  right: -22px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--accent);
+  font-size: 0.9rem;
+  z-index: 2;
+  opacity: 0.6;
+}
+
+/* ===== MOBILE CAROUSEL ===== */
+.steps-carousel {
+  display: none;
+}
+
+/* ===== RESPONSIVE ===== */
 @media (max-width: 1024px) {
-  .steps-grid { grid-template-columns: repeat(2, 1fr); }
+  .steps-desktop {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .step-connector {
+    display: none;
+  }
 }
 
 @media (max-width: 768px) {
-  .steps-grid {
-    grid-template-columns: 1fr;
-    max-width: 400px;
+  .steps-section {
+    padding: 60px 0 50px;
+  }
+
+  .steps-desktop {
+    display: none;
+  }
+
+  .steps-carousel {
+    display: block;
+    overflow: hidden;
+    position: relative;
+    margin-top: 10px;
+  }
+
+  .steps-track {
+    display: flex;
+    transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    will-change: transform;
+  }
+
+  .step-slide {
+    min-width: 100%;
+    padding: 0 15px;
+    box-sizing: border-box;
+  }
+
+  .step-card-mobile {
+    text-align: center;
+    background: linear-gradient(145deg, #f8faff, var(--white));
+    border: 1px solid var(--gray-200);
+    border-radius: var(--radius-lg, 16px);
+    padding: 40px 30px 35px;
+    position: relative;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+  }
+
+  .step-number-mobile {
+    display: inline-block;
+    font-size: 0.75rem;
+    font-weight: 800;
+    color: var(--white);
+    background: var(--accent);
+    width: 32px;
+    height: 32px;
+    line-height: 32px;
+    border-radius: 50%;
+    margin-bottom: 18px;
+    letter-spacing: 1px;
+  }
+
+  .step-icon-mobile {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--primary), var(--primary-light));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 18px;
+    font-size: 1.6rem;
+    color: var(--white);
+  }
+
+  .step-card-mobile h3 {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--gray-800);
+    margin-bottom: 8px;
+  }
+
+  .step-card-mobile p {
+    font-size: 0.9rem;
+    color: var(--gray-500);
+    line-height: 1.65;
+    max-width: 280px;
     margin: 0 auto;
+  }
+
+  /* Dots */
+  .steps-dots {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 24px;
+  }
+
+  .step-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    border: none;
+    background: var(--gray-300);
+    cursor: pointer;
+    padding: 0;
+    transition: all 0.3s ease;
+  }
+
+  .step-dot.active {
+    background: var(--accent);
+    width: 28px;
+    border-radius: 20px;
+  }
+
+  /* Progress bar */
+  .steps-progress {
+    height: 3px;
+    background: var(--gray-200);
+    border-radius: 10px;
+    margin-top: 18px;
+    overflow: hidden;
+  }
+
+  .steps-progress-bar {
+    height: 100%;
+    background: linear-gradient(90deg, var(--primary), var(--accent));
+    border-radius: 10px;
+    transition: width 0.4s ease;
   }
 }

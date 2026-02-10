@@ -5,7 +5,7 @@ import '../styles/Trips.css'
 const emptyTrip = {
   title: '', destination: '', description: '', price: '', original_price: '',
   duration: '', departure_date: '', return_date: '', image_url: '',
-  category: 'praia', total_seats: 44, seat_rows: 11, seats_per_row: 4,
+  category: 'praia', total_seats: 44, deposit_percent: 100, seat_rows: 11, seats_per_row: 4,
   bate_volta: 0, telefone: '', is_active: 1,
 }
 
@@ -410,6 +410,20 @@ export default function Trips() {
                   <label>Preço Original (R$)</label>
                   <input type="number" step="0.01" value={form.original_price || ''} onChange={e => setForm({...form, original_price: e.target.value})} />
                 </div>
+                <div className="form-group">
+                  <label>Entrada (%)</label>
+                  <div className="deposit-input-wrap">
+                    <input type="number" min="1" max="100" value={form.deposit_percent ?? 100} onChange={e => setForm({...form, deposit_percent: e.target.value})} />
+                    <span className="deposit-hint">
+                      {form.price && form.deposit_percent && form.deposit_percent < 100
+                        ? `= ${formatCurrency(form.price * form.deposit_percent / 100)}/pessoa`
+                        : 'Valor integral'}
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              <div className="form-row">
                 <div className="form-group">
                   <label>Duração</label>
                   <input type="text" value={form.duration || ''} onChange={e => setForm({...form, duration: e.target.value})} placeholder="Ex: 3 dias" />

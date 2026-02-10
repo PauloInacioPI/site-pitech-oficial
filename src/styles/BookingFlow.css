@@ -5,6 +5,10 @@
   min-height: 60vh;
 }
 
+.booking-flow-full {
+  padding-top: 40px;
+}
+
 .bf-empty {
   text-align: center;
   padding: 60px 20px;
@@ -12,10 +16,47 @@
 }
 .bf-empty i { font-size: 3rem; margin-bottom: 15px; }
 
+/* ===== VER TODAS BUTTON ===== */
+.bf-ver-todas {
+  text-align: center;
+  margin-top: 40px;
+}
+
+.bf-ver-todas button {
+  background: transparent;
+  color: var(--primary);
+  border: 2px solid var(--primary);
+  padding: 14px 36px;
+  border-radius: 50px;
+  font-size: 1rem;
+  font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.bf-ver-todas button:hover {
+  background: var(--primary);
+  color: var(--white);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(26, 75, 140, 0.3);
+}
+
+.bf-ver-todas button i {
+  transition: transform 0.3s ease;
+}
+
+.bf-ver-todas button:hover i {
+  transform: translateX(4px);
+}
+
 /* ===== TRIP CARDS ===== */
 .bf-trips-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-template-columns: repeat(3, 1fr);
   gap: 25px;
 }
 
@@ -880,12 +921,58 @@
   color: var(--primary);
 }
 
+/* ===== DEPOSIT INFO ===== */
+.bf-deposit-info {
+  background: var(--gray-50, #f8f9fa);
+  border: 1px solid var(--gray-200);
+  border-radius: 12px;
+  padding: 16px 20px;
+  margin-bottom: 24px;
+}
+
+.bf-deposit-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 0;
+  font-size: 0.9rem;
+  color: var(--gray-600);
+}
+
+.bf-deposit-row + .bf-deposit-row {
+  border-top: 1px solid var(--gray-200);
+}
+
+.bf-deposit-highlight {
+  font-weight: 700;
+  color: var(--primary);
+  font-size: 1.05rem;
+}
+
+.bf-deposit-highlight i {
+  margin-right: 6px;
+  color: var(--accent);
+}
+
+.bf-deposit-remaining {
+  font-size: 0.85rem;
+  color: var(--gray-400);
+}
+
 .bf-payment-title {
   font-size: 1rem;
   font-weight: 700;
   color: var(--gray-800);
-  margin-bottom: 18px;
+  margin-bottom: 6px;
   text-align: center;
+}
+
+.bf-payment-subtitle {
+  text-align: center;
+  font-size: 0.88rem;
+  color: var(--accent);
+  font-weight: 600;
+  margin-bottom: 18px;
 }
 
 .bf-payment-methods {
@@ -1178,6 +1265,7 @@
   .bf-detail-info h2 { font-size: 1.4rem; }
   .bf-detail-content { grid-template-columns: 1fr; }
 
+  .bf-trips-grid { grid-template-columns: repeat(2, 1fr); }
   .bf-seats-modal { grid-template-columns: 1fr; padding: 24px; }
   .bf-checkout-modal { grid-template-columns: 1fr; padding: 24px; }
 }
@@ -1185,6 +1273,7 @@
 @media (max-width: 768px) {
   .booking-flow { padding: 60px 0; }
   .bf-trips-grid { grid-template-columns: 1fr; max-width: 400px; margin: 0 auto; }
+  .bf-ver-todas button { width: 100%; justify-content: center; padding: 12px 24px; font-size: 0.95rem; }
   .bf-modal { height: 100vh; border-radius: 0; }
 
   .bf-detail-modal { padding: 20px; }
