@@ -6,7 +6,7 @@ export default function Footer() {
       <div className="container footer-inner">
         <div className="footer-col">
           <a href="#" className="logo footer-logo">
-            <img src="/logo-jotta.png" alt="PiTech Sistemas" className="logo-img footer-logo-img" />
+            <img src="/logo-pitech.jpg" alt="PiTech Sistemas" className="logo-img footer-logo-img" />
           </a>
           <p>Transformando ideias em soluções tecnológicas desde 2010. Seu projeto começa aqui.</p>
           <div className="social-links">

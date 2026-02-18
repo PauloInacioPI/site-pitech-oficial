@@ -25,7 +25,7 @@ export default function Header() {
     <header className={`header ${scrolled ? 'scrolled' : ''}`}>
       <div className="container header-inner">
         <a href="#" className="logo">
-          <img src="/logo-jotta.png" alt="PiTech Sistemas" className="logo-img" />
+          <img src="/logo-pitech.jpg" alt="PiTech Sistemas" className="logo-img" />
         </a>
 
         <nav className={`nav ${menuOpen ? 'open' : ''}`}>

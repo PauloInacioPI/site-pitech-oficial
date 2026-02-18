@@ -41,7 +41,7 @@ export default function Login() {
       <div className="login-card">
         <div className="login-header">
           <div className="login-logo">
-            <img src="/logo-jotta.png" alt="PiTech Sistemas" className="login-logo-img" />
+            <img src="/logo-pitech.jpg" alt="PiTech Sistemas" className="login-logo-img" />
           </div>
           <p>Painel Administrativo</p>
         </div>
