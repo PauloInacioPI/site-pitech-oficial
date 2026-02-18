@@ -32,23 +32,23 @@ export default function Stats() {
       <div className="container stats-inner">
         <div className="stats-content">
           <div className="stats-number-wrapper">
-            <span className="stats-big-number"><AnimatedNumber target={48} /></span>
+            <span className="stats-big-number"><AnimatedNumber target={10} /></span>
             <span className="stats-plus">+</span>
           </div>
-          <h2>Soluções em Tecnologia, <span className="highlight">Resultados Reais</span></h2>
-          <p>Desenvolvemos sistemas personalizados para empresas de todos os portes, com qualidade, agilidade e suporte dedicado.</p>
+          <h2>Projetos Entregues, <span className="highlight">Clientes Satisfeitos</span></h2>
+          <p>Desenvolvemos sites, sistemas e SaaS para empresas de diferentes segmentos — com foco em qualidade, prazo e resultado.</p>
           <div className="stats-row">
             <div className="stat-item">
-              <div><span className="stat-number"><AnimatedNumber target={500} /></span><span className="stat-suffix">+</span></div>
-              <span className="stat-label">Clientes Atendidos</span>
-            </div>
-            <div className="stat-item">
-              <div><span className="stat-number"><AnimatedNumber target={120} /></span><span className="stat-suffix">+</span></div>
+              <div><span className="stat-number"><AnimatedNumber target={10} /></span><span className="stat-suffix">+</span></div>
               <span className="stat-label">Projetos Entregues</span>
             </div>
             <div className="stat-item">
-              <div><span className="stat-number"><AnimatedNumber target={15} /></span><span className="stat-suffix">+</span></div>
-              <span className="stat-label">Anos de Experiência</span>
+              <div><span className="stat-number"><AnimatedNumber target={4} /></span><span className="stat-suffix">+</span></div>
+              <span className="stat-label">SaaS em Operação</span>
+            </div>
+            <div className="stat-item">
+              <div><span className="stat-number"><AnimatedNumber target={100} /></span><span className="stat-suffix">%</span></div>
+              <span className="stat-label">Satisfação Garantida</span>
             </div>
           </div>
         </div>

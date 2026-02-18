@@ -3,9 +3,9 @@ import Header from './components/Header'
 import Hero from './components/Hero'
 import Steps from './components/Steps'
 import Stats from './components/Stats'
-import BookingFlow from './components/BookingFlow'
 import Experience from './components/Experience'
-import BookTrip from './components/BookTrip'
+import Destinations from './components/Destinations'
+import Packages from './components/Packages'
 import Contact from './components/Contact'
 import Footer from './components/Footer'
 import AllTrips from './components/AllTrips'
@@ -23,9 +23,9 @@ function HomePage() {
       <Hero />
       <Steps />
       <Stats />
-      <BookingFlow />
+      <Destinations />
       <Experience />
-      <BookTrip />
+      <Packages />
       <Contact />
       <Footer />
     </>
