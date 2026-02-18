@@ -408,8 +408,9 @@
   display: flex;
   flex-direction: column;
   gap: 10px;
-  margin-top: auto;
-  padding-top: 4px;
+  padding: 16px 32px 24px;
+  border-top: 1px solid var(--gray-100);
+  flex-shrink: 0;
 }
 
 .proj-btn {
@@ -472,7 +473,11 @@
   .proj-modal-left { min-height: 180px; }
 
   .proj-modal-scroll {
-    padding: 20px 18px 24px;
+    padding: 20px 18px 16px;
+  }
+
+  .proj-modal-actions {
+    padding: 12px 18px 20px;
   }
 
   .proj-modal-title { font-size: 1.3rem; }

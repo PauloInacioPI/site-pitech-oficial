@@ -315,25 +315,25 @@ export default function Destinations() {
                     <i className="fas fa-tag"></i> {selected.price}
                   </div>
                 )}
+              </div>
 
-                <div className="proj-modal-actions">
-                  <a
-                    href={`https://wa.me/5522981605315?text=${encodeURIComponent(`Olá! Tenho interesse no produto *${selected.name}*. Pode me passar mais detalhes?`)}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="proj-btn proj-btn-whatsapp"
-                  >
-                    <i className="fab fa-whatsapp"></i> Tenho Interesse
-                  </a>
-                  <a
-                    href={selected.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="proj-btn proj-btn-outline"
-                  >
-                    <i className="fas fa-external-link-alt"></i> Ver ao Vivo
-                  </a>
-                </div>
+              <div className="proj-modal-actions">
+                <a
+                  href={`https://wa.me/5522981605315?text=${encodeURIComponent(`Olá! Tenho interesse no produto *${selected.name}*. Pode me passar mais detalhes?`)}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="proj-btn proj-btn-whatsapp"
+                >
+                  <i className="fab fa-whatsapp"></i> Tenho Interesse
+                </a>
+                <a
+                  href={selected.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="proj-btn proj-btn-outline"
+                >
+                  <i className="fas fa-external-link-alt"></i> Ver ao Vivo
+                </a>
               </div>
             </div>
 
