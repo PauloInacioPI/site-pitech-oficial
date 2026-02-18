@@ -19,7 +19,9 @@
   height: 45px;
   width: auto;
   object-fit: contain;
-  filter: brightness(0) invert(1);
+  background: #fff;
+  padding: 5px 10px;
+  border-radius: 8px;
 }
 
 .footer-col p {

@@ -455,16 +455,25 @@
 
 /* ---- Responsivo ---- */
 @media (max-width: 700px) {
+  .proj-modal-overlay {
+    padding: 0;
+    align-items: stretch;
+  }
+
   .proj-modal {
     grid-template-columns: 1fr;
-    max-height: 92vh;
+    max-height: 100vh;
+    height: 100vh;
+    border-radius: 0;
+    width: 100%;
+    animation: pmSlideUp 0.25s cubic-bezier(0.34, 1.2, 0.64, 1);
   }
 
-  .proj-modal-left { min-height: 200px; }
+  .proj-modal-left { min-height: 180px; }
 
   .proj-modal-scroll {
-    padding: 24px 20px 28px;
+    padding: 20px 18px 24px;
   }
 
-  .proj-modal-title { font-size: 1.35rem; }
+  .proj-modal-title { font-size: 1.3rem; }
 }
