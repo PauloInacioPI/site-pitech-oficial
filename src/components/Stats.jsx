@@ -53,7 +53,7 @@ export default function Stats() {
           </div>
         </div>
         <div className="stats-image">
-          <img src="https://images.unsplash.com/photo-1527631746610-bca00a040d60?w=600&q=80" alt="Viajante explorando" className="stats-img" />
+          <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=600&q=80" alt="Desenvolvedor trabalhando" className="stats-img" />
         </div>
       </div>
     </section>

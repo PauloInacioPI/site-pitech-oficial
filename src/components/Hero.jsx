@@ -6,15 +6,15 @@ const API = 'http://localhost:3002/api'
 // Fallback se não houver slides no banco
 const defaultSlide = {
   type: 'text',
-  bg_image: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1600&q=80',
-  subtitle: 'Descubra',
-  title: 'O Mundo',
+  bg_image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=1600&q=80',
+  subtitle: 'Bem-vindo à',
+  title: 'PiTech Sistemas',
   description: 'Soluções tecnológicas inovadoras para transformar o seu negócio. Parceria, qualidade e inovação com a PiTech Sistemas.',
-  traveler_image: 'https://images.unsplash.com/photo-1551632811-561732d1e306?w=600&q=80',
-  badge_number: '60%',
-  badge_text: 'DESCONTO',
-  btn_primary_text: 'Explorar Pacotes',
-  btn_primary_link: '#pacotes',
+  traveler_image: 'https://images.unsplash.com/photo-1603969072881-b0fc7f3d77d7?w=600&q=80',
+  badge_number: '12+',
+  badge_text: 'PROJETOS',
+  btn_primary_text: 'Ver Projetos',
+  btn_primary_link: '#projetos',
   btn_secondary_text: 'Saiba Mais',
   btn_secondary_link: '#sobre',
 }

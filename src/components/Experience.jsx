@@ -19,9 +19,9 @@ export default function Experience() {
       <div className="container experience-inner">
         <div className="experience-images">
           <div className="exp-img-grid">
-            <img src="https://images.unsplash.com/photo-1526392060635-9d6019884377?w=500&q=80" alt="Machu Picchu" className="exp-img exp-img-1" />
-            <img src="https://images.unsplash.com/photo-1493246507139-91e8fad9978e?w=500&q=80" alt="Lago montanha" className="exp-img exp-img-2" />
-            <img src="https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=500&q=80" alt="Estrada viagem" className="exp-img exp-img-3" />
+            <img src="https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=500&q=80" alt="Código" className="exp-img exp-img-1" />
+            <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=500&q=80" alt="Equipe tech" className="exp-img exp-img-2" />
+            <img src="https://images.unsplash.com/photo-1573164713988-8665fc963095?w=500&q=80" alt="Desenvolvimento" className="exp-img exp-img-3" />
           </div>
         </div>
         <div className="experience-content">

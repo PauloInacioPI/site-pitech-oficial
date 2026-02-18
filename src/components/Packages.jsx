@@ -49,7 +49,7 @@ export default function Packages() {
   return (
     <section className="packages-section" id="pacotes" ref={ref}>
       <div className="packages-bg">
-        <img src="https://images.unsplash.com/photo-1454496522488-7a8e488e8606?w=1600&q=80" alt="Montanhas" className="packages-bg-img" />
+        <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=1600&q=80" alt="Código" className="packages-bg-img" />
         <div className="packages-overlay"></div>
       </div>
       <div className="container packages-content">
