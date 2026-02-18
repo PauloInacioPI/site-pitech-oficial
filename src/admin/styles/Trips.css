@@ -57,8 +57,8 @@
 .mini-badge {
   display: inline-block;
   padding: 2px 8px;
-  background: #dbeafe;
-  color: #1e40af;
+  background: #f3f4f6;
+  color: #111827;
   border-radius: 4px;
   font-size: 0.65rem;
   font-weight: 600;
@@ -89,13 +89,13 @@
 }
 
 .image-tab:hover {
-  border-color: #1a4b8c;
-  color: #1a4b8c;
+  border-color: #111827;
+  color: #111827;
 }
 
 .image-tab.active {
-  background: #1a4b8c;
-  border-color: #1a4b8c;
+  background: #111827;
+  border-color: #111827;
   color: #fff;
 }
 
@@ -107,7 +107,7 @@
 }
 
 .upload-area:hover {
-  border-color: #1a4b8c;
+  border-color: #111827;
   background: #eff6ff;
 }
 
@@ -125,7 +125,7 @@
 
 .upload-label i {
   font-size: 1.3rem;
-  color: #1a4b8c;
+  color: #111827;
 }
 
 /* ===== IMAGE PREVIEW ===== */
@@ -249,7 +249,7 @@
 }
 
 .trip-detail-meta i {
-  color: #1a4b8c;
+  color: #111827;
   font-size: 0.78rem;
 }
 
@@ -269,7 +269,7 @@
 .trip-detail-current {
   font-size: 1.5rem;
   font-weight: 700;
-  color: #1a4b8c;
+  color: #111827;
 }
 
 .trip-detail-per {
@@ -306,7 +306,7 @@
   flex-shrink: 0;
 }
 
-.td-stat-blue .td-stat-icon { background: #dbeafe; color: #1e40af; }
+.td-stat-blue .td-stat-icon { background: #f3f4f6; color: #111827; }
 .td-stat-green .td-stat-icon { background: #dcfce7; color: #166534; }
 .td-stat-gold .td-stat-icon { background: #fef3c7; color: #92400e; }
 .td-stat-purple .td-stat-icon { background: #ede9fe; color: #5b21b6; }

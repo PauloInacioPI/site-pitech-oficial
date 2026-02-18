@@ -539,7 +539,7 @@ export default function BookingFlow({ showAll = false }) {
                   {payMethod === 'card' && (
                     <div className="bf-card-box">
                       <div className="bf-card-info" style={{ textAlign: 'center', padding: '30px 20px' }}>
-                        <i className="fas fa-spinner fa-spin" style={{ fontSize: '2rem', color: '#1a4b8c', marginBottom: 12 }}></i>
+                        <i className="fas fa-spinner fa-spin" style={{ fontSize: '2rem', color: '#111827', marginBottom: 12 }}></i>
                         <h4>Redirecionando para pagamento seguro...</h4>
                         <p>Voce sera redirecionado para a pagina do Stripe.</p>
                       </div>

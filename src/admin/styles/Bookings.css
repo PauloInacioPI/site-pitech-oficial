@@ -38,7 +38,7 @@
 }
 
 .detail-section h4 i {
-  color: #1a4b8c;
+  color: #111827;
 }
 
 .detail-info p {
@@ -75,10 +75,10 @@
 }
 
 .btn-pendente { background: #fef3c7 !important; color: #92400e !important; }
-.btn-confirmado { background: #dbeafe !important; color: #1e40af !important; }
+.btn-confirmado { background: #f3f4f6 !important; color: #111827 !important; }
 .btn-cancelado { background: #fee2e2 !important; color: #991b1b !important; }
 .btn-pay-aguardando { background: #fef3c7 !important; color: #92400e !important; }
-.btn-pay-pago { background: #dbeafe !important; color: #1e40af !important; }
+.btn-pay-pago { background: #f3f4f6 !important; color: #111827 !important; }
 .btn-pay-reembolsado { background: #e0e7ff !important; color: #3730a3 !important; }
 
 .seat-badge {
