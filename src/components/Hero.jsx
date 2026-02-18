@@ -1,9 +1,6 @@
 import { useState, useEffect, useCallback } from 'react'
 import '../styles/Hero.css'
 
-const API = 'http://localhost:3002/api'
-
-// Fallback se não houver slides no banco
 const defaultSlide = {
   type: 'text',
   bg_image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=1600&q=80',
@@ -23,15 +20,6 @@ export default function Hero() {
   const [slides, setSlides] = useState([defaultSlide])
   const [current, setCurrent] = useState(0)
   const [animating, setAnimating] = useState(false)
-
-  useEffect(() => {
-    fetch(`${API}/public/banners`)
-      .then(r => r.json())
-      .then(data => {
-        if (data && data.length > 0) setSlides(data)
-      })
-      .catch(() => {})
-  }, [])
 
   const goTo = useCallback((index) => {
     if (animating || index === current) return
