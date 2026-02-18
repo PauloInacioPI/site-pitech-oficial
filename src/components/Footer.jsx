@@ -32,9 +32,9 @@ export default function Footer() {
         </div>
         <div className="footer-col">
           <h4>Contato</h4>
-          <p><i className="fas fa-phone"></i> (11) 99999-9999</p>
+          <p><i className="fas fa-phone"></i> (22) 98160-5315</p>
           <p><i className="fas fa-envelope"></i> contato@pitechsistemas.com.br</p>
-          <p><i className="fas fa-map-marker-alt"></i> São Paulo, SP - Brasil</p>
+          <p><i className="fas fa-map-marker-alt"></i> Santo Antônio de Pádua, RJ</p>
         </div>
       </div>
       <div className="footer-bottom">
