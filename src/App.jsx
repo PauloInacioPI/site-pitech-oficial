@@ -37,12 +37,12 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<HomePage />} />
-        <Route path="/excursoes" element={<AllTrips />} />
+        <Route path="/portfolio" element={<AllTrips />} />
         <Route path="/admin/login" element={<Login />} />
         <Route path="/admin" element={<AdminLayout />}>
           <Route index element={<Dashboard />} />
-          <Route path="viagens" element={<Trips />} />
-          <Route path="reservas" element={<Bookings />} />
+          <Route path="projetos" element={<Trips />} />
+          <Route path="contratos" element={<Bookings />} />
           <Route path="configuracoes" element={<Settings />} />
         </Route>
       </Routes>

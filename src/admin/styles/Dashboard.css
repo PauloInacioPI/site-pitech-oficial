@@ -141,7 +141,7 @@
 .trip-revenue-total {
   font-size: 1.3rem;
   font-weight: 800;
-  color: #111111;
+  color: #1a4b8c;
   display: block;
 }
 
@@ -201,7 +201,7 @@
 }
 
 .revenue-bar-paid {
-  background: linear-gradient(90deg, #111111, #333333);
+  background: linear-gradient(90deg, #1a4b8c, #2d7ab8);
 }
 
 .revenue-bar-occupancy {
@@ -254,7 +254,7 @@
 }
 
 .quick-action:hover {
-  border-color: #111111;
+  border-color: #1a4b8c;
   transform: translateY(-2px);
   box-shadow: 0 4px 15px rgba(0,0,0,0.08);
 }

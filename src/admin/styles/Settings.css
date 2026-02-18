@@ -78,8 +78,8 @@
 }
 
 .slide-item:hover {
-  border-color: #111111;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  border-color: #1a4b8c;
+  box-shadow: 0 2px 8px rgba(26, 75, 140, 0.1);
 }
 
 .slide-preview {
@@ -160,8 +160,8 @@
 }
 
 .btn-icon-edit:hover {
-  border-color: #111111;
-  color: #111111;
+  border-color: #1a4b8c;
+  color: #1a4b8c;
   background: #eff6ff;
 }
 
@@ -353,7 +353,7 @@
 }
 
 .stripe-section-title i {
-  color: #111111;
+  color: #1a4b8c;
   font-size: 0.85rem;
 }
 

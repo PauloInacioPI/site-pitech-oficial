@@ -41,7 +41,7 @@ export default function Dashboard() {
       <div className="page-header">
         <div>
           <h1>Dashboard</h1>
-          <p>Visao geral do sistema</p>
+          <p>Visão geral dos projetos e contratos</p>
         </div>
       </div>
 
@@ -57,10 +57,10 @@ export default function Dashboard() {
         </div>
 
         <div className="stat-card stat-card-teal">
-          <div className="stat-card-icon"><i className="fas fa-bus"></i></div>
+          <div className="stat-card-icon"><i className="fas fa-laptop-code"></i></div>
           <div className="stat-card-info">
             <span className="stat-card-value">{formatCurrency(stats?.openExcursions?.total)}</span>
-            <span className="stat-card-label">Excursoes em Aberto</span>
+            <span className="stat-card-label">Projetos em Andamento</span>
             <span className="stat-card-sub">{formatCurrency(stats?.openExcursions?.paid)} recebido</span>
           </div>
         </div>
@@ -69,26 +69,26 @@ export default function Dashboard() {
           <div className="stat-card-icon"><i className="fas fa-users"></i></div>
           <div className="stat-card-info">
             <span className="stat-card-value">{stats?.passengers || 0}</span>
-            <span className="stat-card-label">Pessoas Reservadas</span>
-            <span className="stat-card-sub">em {stats?.bookings?.total || 0} reservas</span>
+            <span className="stat-card-label">Clientes Ativos</span>
+            <span className="stat-card-sub">em {stats?.bookings?.total || 0} contratos</span>
           </div>
         </div>
 
         <div className="stat-card stat-card-blue">
-          <div className="stat-card-icon"><i className="fas fa-route"></i></div>
+          <div className="stat-card-icon"><i className="fas fa-code"></i></div>
           <div className="stat-card-info">
             <span className="stat-card-value">{stats?.trips?.total || 0}</span>
-            <span className="stat-card-label">Viagens</span>
-            <span className="stat-card-sub">{stats?.trips?.active || 0} ativas</span>
+            <span className="stat-card-label">Projetos</span>
+            <span className="stat-card-sub">{stats?.trips?.active || 0} ativos</span>
           </div>
         </div>
 
         <div className="stat-card stat-card-green">
-          <div className="stat-card-icon"><i className="fas fa-ticket-alt"></i></div>
+          <div className="stat-card-icon"><i className="fas fa-file-contract"></i></div>
           <div className="stat-card-info">
             <span className="stat-card-value">{stats?.bookings?.total || 0}</span>
-            <span className="stat-card-label">Reservas</span>
-            <span className="stat-card-sub">{stats?.bookings?.confirmed || 0} confirmadas</span>
+            <span className="stat-card-label">Contratos</span>
+            <span className="stat-card-sub">{stats?.bookings?.confirmed || 0} confirmados</span>
           </div>
         </div>
       </div>
@@ -96,13 +96,13 @@ export default function Dashboard() {
       {/* ===== FATURAMENTO POR VIAGEM ===== */}
       <div className="dashboard-card revenue-by-trip-card">
         <div className="card-header">
-          <h3><i className="fas fa-suitcase-rolling"></i> Faturamento por Viagem</h3>
+          <h3><i className="fas fa-laptop-code"></i> Faturamento por Projeto</h3>
         </div>
         <div className="card-body">
           {revenueByTrip.length === 0 ? (
             <div className="empty-state">
               <i className="fas fa-inbox"></i>
-              <p>Nenhuma viagem ativa</p>
+              <p>Nenhum projeto ativo</p>
             </div>
           ) : (
             <div className="trip-revenue-list">
@@ -121,7 +121,7 @@ export default function Dashboard() {
                       <div className="trip-revenue-title">
                         <strong>{trip.title}</strong>
                         <span className="trip-revenue-dest">
-                          <i className="fas fa-map-marker-alt"></i> {trip.destination}
+                          <i className="fas fa-tag"></i> {trip.destination}
                         </span>
                       </div>
                       <div className="trip-revenue-meta">
@@ -173,14 +173,14 @@ export default function Dashboard() {
       <div className="dashboard-grid">
         <div className="dashboard-card">
           <div className="card-header">
-            <h3><i className="fas fa-clock"></i> Reservas Recentes</h3>
-            <Link to="/admin/reservas" className="card-link">Ver todas</Link>
+            <h3><i className="fas fa-clock"></i> Contratos Recentes</h3>
+            <Link to="/admin/contratos" className="card-link">Ver todos</Link>
           </div>
           <div className="card-body">
             {recentBookings.length === 0 ? (
               <div className="empty-state">
                 <i className="fas fa-inbox"></i>
-                <p>Nenhuma reserva ainda</p>
+                <p>Nenhum contrato ainda</p>
               </div>
             ) : (
               <table className="admin-table">
@@ -188,7 +188,7 @@ export default function Dashboard() {
                   <tr>
                     <th>Codigo</th>
                     <th>Cliente</th>
-                    <th>Viagem</th>
+                    <th>Projeto</th>
                     <th>Status</th>
                     <th>Valor</th>
                   </tr>
@@ -215,13 +215,13 @@ export default function Dashboard() {
           </div>
           <div className="card-body">
             <div className="quick-actions">
-              <Link to="/admin/viagens" className="quick-action">
+              <Link to="/admin/projetos" className="quick-action">
                 <div className="quick-action-icon green"><i className="fas fa-plus"></i></div>
-                <span>Nova Viagem</span>
+                <span>Novo Projeto</span>
               </Link>
-              <Link to="/admin/reservas" className="quick-action">
+              <Link to="/admin/contratos" className="quick-action">
                 <div className="quick-action-icon blue"><i className="fas fa-list"></i></div>
-                <span>Ver Reservas</span>
+                <span>Ver Contratos</span>
               </Link>
               <Link to="/admin/configuracoes" className="quick-action">
                 <div className="quick-action-icon gold"><i className="fas fa-cog"></i></div>

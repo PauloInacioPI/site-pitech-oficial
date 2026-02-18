@@ -42,11 +42,11 @@ export default function AdminLayout() {
           <NavLink to="/admin" end onClick={() => setSidebarOpen(false)}>
             <i className="fas fa-chart-pie"></i> Dashboard
           </NavLink>
-          <NavLink to="/admin/viagens" onClick={() => setSidebarOpen(false)}>
-            <i className="fas fa-route"></i> Viagens
+          <NavLink to="/admin/projetos" onClick={() => setSidebarOpen(false)}>
+            <i className="fas fa-code"></i> Projetos
           </NavLink>
-          <NavLink to="/admin/reservas" onClick={() => setSidebarOpen(false)}>
-            <i className="fas fa-ticket-alt"></i> Reservas
+          <NavLink to="/admin/contratos" onClick={() => setSidebarOpen(false)}>
+            <i className="fas fa-file-contract"></i> Contratos
           </NavLink>
 
           <span className="sidebar-label">SISTEMA</span>

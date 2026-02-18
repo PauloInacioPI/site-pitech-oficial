@@ -11,7 +11,7 @@
 .login-bg {
   position: fixed;
   inset: 0;
-  background: linear-gradient(135deg, #000000 0%, #111111 40%, #333333 100%);
+  background: linear-gradient(135deg, #0f2d54 0%, #1a4b8c 40%, #2d7ab8 100%);
   z-index: 0;
 }
 
@@ -104,19 +104,19 @@
 }
 
 .login-field input:focus {
-  border-color: #111111;
+  border-color: #1a4b8c;
   background: #fff;
-  box-shadow: 0 0 0 4px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 0 4px rgba(26, 75, 140, 0.1);
 }
 
 .login-field input:focus + i,
 .login-field:focus-within i {
-  color: #111111;
+  color: #1a4b8c;
 }
 
 .login-btn {
   padding: 16px;
-  background: linear-gradient(135deg, #111111, #333333);
+  background: linear-gradient(135deg, #1a4b8c, #2d7ab8);
   color: #fff;
   border: none;
   border-radius: 14px;
@@ -134,7 +134,7 @@
 
 .login-btn:hover {
   transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 8px 25px rgba(26, 75, 140, 0.4);
 }
 
 .login-btn:active {
@@ -163,7 +163,7 @@
 }
 
 .login-footer a:hover {
-  color: #111111;
+  color: #1a4b8c;
 }
 
 @media (max-width: 480px) {
