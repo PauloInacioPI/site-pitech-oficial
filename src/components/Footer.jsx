@@ -10,10 +10,7 @@ export default function Footer() {
           </a>
           <p>Transformando ideias em soluções tecnológicas desde 2010. Seu projeto começa aqui.</p>
           <div className="social-links">
-            <a href="#"><i className="fab fa-facebook-f"></i></a>
-            <a href="#"><i className="fab fa-instagram"></i></a>
-            <a href="#"><i className="fab fa-twitter"></i></a>
-            <a href="#"><i className="fab fa-youtube"></i></a>
+            <a href="https://instagram.com/pitechsistemas" target="_blank" rel="noopener noreferrer"><i className="fab fa-instagram"></i></a>
           </div>
         </div>
         <div className="footer-col">
