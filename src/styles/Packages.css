@@ -18,7 +18,7 @@
 .packages-overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, rgba(6, 10, 18, 0.92) 0%, rgba(17, 24, 39, 0.88) 100%);
+  background: linear-gradient(180deg, rgba(15, 45, 84, 0.92) 0%, rgba(26, 75, 140, 0.88) 100%);
 }
 
 .packages-content {

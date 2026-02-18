@@ -9,7 +9,7 @@
 /* ===== SIDEBAR ===== */
 .admin-sidebar {
   width: 270px;
-  background: linear-gradient(180deg, #030509 0%, #060a12 50%, #111827 100%);
+  background: linear-gradient(180deg, #0a1e3d 0%, #0f2d54 50%, #1a4b8c 100%);
   color: #fff;
   display: flex;
   flex-direction: column;
@@ -207,7 +207,7 @@
 }
 
 .topbar-link:hover {
-  color: #111827;
+  color: #1a4b8c;
 }
 
 .topbar-user {
@@ -223,7 +223,7 @@
   width: 36px;
   height: 36px;
   border-radius: 10px;
-  background: linear-gradient(135deg, #111827, #1f2937);
+  background: linear-gradient(135deg, #1a4b8c, #2d7ab8);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -276,13 +276,13 @@
 }
 
 .btn-admin-primary {
-  background: linear-gradient(135deg, #111827, #1f2937);
+  background: linear-gradient(135deg, #1a4b8c, #2d7ab8);
   color: #fff;
 }
 
 .btn-admin-primary:hover {
   transform: translateY(-1px);
-  box-shadow: 0 4px 15px rgba(17,24,39,0.3);
+  box-shadow: 0 4px 15px rgba(26,75,140,0.3);
 }
 
 .btn-admin-ghost {
@@ -338,11 +338,11 @@
 }
 
 .card-header h3 i {
-  color: #111827;
+  color: #1a4b8c;
 }
 
 .card-link {
-  color: #111827;
+  color: #1a4b8c;
   font-size: 0.85rem;
   font-weight: 600;
   text-decoration: none;
@@ -414,22 +414,22 @@
 }
 
 .badge-pendente { background: #fef3c7; color: #92400e; }
-.badge-confirmado { background: #f3f4f6; color: #111827; }
+.badge-confirmado { background: #dbeafe; color: #1e40af; }
 .badge-cancelado { background: #fee2e2; color: #991b1b; }
 .badge-pay-aguardando { background: #fef3c7; color: #92400e; }
-.badge-pay-pago { background: #f3f4f6; color: #111827; }
+.badge-pay-pago { background: #dbeafe; color: #1e40af; }
 .badge-pay-reembolsado { background: #e0e7ff; color: #3730a3; }
 
-.badge-cat-praia { background: #f3f4f6; color: #111827; }
+.badge-cat-praia { background: #dbeafe; color: #1e40af; }
 .badge-cat-aventura { background: #fce7f3; color: #9d174d; }
 .badge-cat-cultural { background: #ede9fe; color: #5b21b6; }
-.badge-cat-natureza { background: #f3f4f6; color: #111827; }
+.badge-cat-natureza { background: #dbeafe; color: #1e40af; }
 
 .booking-code {
   font-family: 'Courier New', monospace;
   font-weight: 700;
   font-size: 0.85rem;
-  color: #111827;
+  color: #1a4b8c;
   background: #eff6ff;
   padding: 3px 10px;
   border-radius: 6px;
@@ -466,7 +466,7 @@
 
 .admin-loading i {
   font-size: 1.5rem;
-  color: #111827;
+  color: #1a4b8c;
 }
 
 /* Toolbar */
@@ -506,7 +506,7 @@
 }
 
 .search-box input:focus {
-  border-color: #111827;
+  border-color: #1a4b8c;
 }
 
 .toolbar-count {
@@ -534,13 +534,13 @@
 }
 
 .filter-btn:hover {
-  border-color: #111827;
-  color: #111827;
+  border-color: #1a4b8c;
+  color: #1a4b8c;
 }
 
 .filter-btn.active {
-  background: #111827;
-  border-color: #111827;
+  background: #1a4b8c;
+  border-color: #1a4b8c;
   color: #fff;
 }
 
@@ -559,8 +559,8 @@
 }
 
 .toggle-btn.active {
-  background: #f3f4f6;
-  color: #111827;
+  background: #dbeafe;
+  color: #1e40af;
 }
 
 /* Action Buttons */
@@ -584,10 +584,10 @@
 
 .action-btn.edit {
   background: #eff6ff;
-  color: #374151;
+  color: #2563eb;
 }
 .action-btn.edit:hover {
-  background: #374151;
+  background: #2563eb;
   color: #fff;
 }
 
@@ -602,10 +602,10 @@
 
 .action-btn.view {
   background: #eff6ff;
-  color: #374151;
+  color: #2563eb;
 }
 .action-btn.view:hover {
-  background: #374151;
+  background: #2563eb;
   color: #fff;
 }
 
@@ -726,9 +726,9 @@
 .form-group input:focus,
 .form-group select:focus,
 .form-group textarea:focus {
-  border-color: #111827;
+  border-color: #1a4b8c;
   background: #fff;
-  box-shadow: 0 0 0 3px rgba(17,24,39,0.1);
+  box-shadow: 0 0 0 3px rgba(26,75,140,0.1);
 }
 
 .form-group textarea {
@@ -745,7 +745,7 @@
 .form-check input[type="checkbox"] {
   width: 20px;
   height: 20px;
-  accent-color: #111827;
+  accent-color: #1a4b8c;
   cursor: pointer;
 }
 
