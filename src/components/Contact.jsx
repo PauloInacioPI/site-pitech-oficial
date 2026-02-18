@@ -13,8 +13,8 @@ export default function Contact() {
   return (
     <section className="cta-section" id="contato">
       <div className="container cta-inner">
-        <h2>Pronto Para Sua Próxima Aventura?</h2>
-        <p>Entre em contato conosco e monte o pacote perfeito para você e sua família.</p>
+        <h2>Pronto Para Transformar Seu Negócio?</h2>
+        <p>Entre em contato conosco e descubra como nossas soluções tecnológicas podem impulsionar sua empresa.</p>
         <form className="cta-form" onSubmit={handleSubmit}>
           <input
             type="text"

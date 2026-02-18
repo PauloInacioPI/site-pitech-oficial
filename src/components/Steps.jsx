@@ -3,10 +3,10 @@ import useInView from '../hooks/useInView'
 import '../styles/Steps.css'
 
 const steps = [
-  { icon: 'fa-map-marked-alt', title: 'Escolha o Destino', desc: 'Navegue pelas excursões e encontre a viagem perfeita.' },
-  { icon: 'fa-chair', title: 'Reserve seu Assento', desc: 'Selecione seus assentos no mapa interativo do ônibus.' },
-  { icon: 'fa-credit-card', title: 'Pague com Segurança', desc: 'PIX instantâneo ou cartão de crédito via Stripe.' },
-  { icon: 'fa-umbrella-beach', title: 'Aproveite a Viagem', desc: 'Embarque e curta cada momento da sua aventura!' },
+  { icon: 'fa-search', title: 'Conheça as Soluções', desc: 'Explore nosso portfólio e encontre o sistema ideal para o seu negócio.' },
+  { icon: 'fa-clipboard-list', title: 'Solicite um Orçamento', desc: 'Preencha o formulário e receba uma proposta personalizada.' },
+  { icon: 'fa-handshake', title: 'Feche o Contrato', desc: 'Assine o contrato com segurança e comece o desenvolvimento.' },
+  { icon: 'fa-rocket', title: 'Seu Sistema no Ar', desc: 'Receba sua solução funcionando e com suporte dedicado!' },
 ]
 
 export default function Steps() {
@@ -58,8 +58,8 @@ export default function Steps() {
       <div className="container">
         <div className="section-header">
           <p className="section-tag">Simples e Rápido</p>
-          <h2 className="section-title">Como <span className="highlight">Reservar</span></h2>
-          <p className="section-subtitle">Em apenas 4 passos você garante sua vaga</p>
+          <h2 className="section-title">Como <span className="highlight">Contratar</span></h2>
+          <p className="section-subtitle">Em apenas 4 passos seu sistema está pronto</p>
         </div>
 
         {/* Desktop: grid normal */}

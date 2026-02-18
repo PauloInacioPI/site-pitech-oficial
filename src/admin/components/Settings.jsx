@@ -552,7 +552,7 @@ export default function Settings() {
           <div className="form-row">
             <div className="form-group">
               <label>Nome da Empresa</label>
-              <input type="text" value={stripeAccount.business_name || ''} onChange={e => setStripeAccount({ ...stripeAccount, business_name: e.target.value })} placeholder="Ex: Jotta Excursões Ltda" />
+              <input type="text" value={stripeAccount.business_name || ''} onChange={e => setStripeAccount({ ...stripeAccount, business_name: e.target.value })} placeholder="Ex: PiTech Sistemas Ltda" />
             </div>
             <div className="form-group">
               <label>Nome do Responsável</label>

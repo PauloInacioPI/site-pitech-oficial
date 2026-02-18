@@ -3,11 +3,11 @@ import useInView from '../hooks/useInView'
 import '../styles/Experience.css'
 
 const benefits = [
-  'Guias turísticos especializados e multilíngues',
-  'Hospedagens selecionadas com conforto garantido',
-  'Roteiros personalizados para cada grupo',
-  'Suporte 24h durante toda a viagem',
-  'Seguro viagem completo incluso',
+  'Equipe técnica especializada e certificada',
+  'Soluções personalizadas para cada cliente',
+  'Suporte técnico 24h dedicado',
+  'Integrações e APIs robustas e seguras',
+  'Atualizações e melhorias contínuas',
 ]
 
 export default function Experience() {
@@ -25,11 +25,11 @@ export default function Experience() {
           </div>
         </div>
         <div className="experience-content">
-          <p className="section-tag">Nossas Experiências</p>
-          <h2 className="section-title">Destinos <span className="highlight">Incríveis</span> Todos os Meses</h2>
+          <p className="section-tag">Por Que Nos Escolher</p>
+          <h2 className="section-title">Tecnologia <span className="highlight">Inovadora</span> Para o Seu Negócio</h2>
           <p className="experience-desc">
-            Descubra novos lugares todos os meses com nossos pacotes exclusivos.
-            Cada viagem é planejada com cuidado para garantir momentos inesquecíveis.
+            Desenvolvemos sistemas sob medida com foco em performance e usabilidade.
+            Cada projeto é planejado com cuidado para entregar resultados reais e duradouros.
           </p>
           <ul className="experience-list">
             {benefits.map((item, i) => (

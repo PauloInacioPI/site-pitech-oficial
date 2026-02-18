@@ -9,7 +9,7 @@ const defaultSlide = {
   bg_image: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1600&q=80',
   subtitle: 'Descubra',
   title: 'O Mundo',
-  description: 'Explore destinos incríveis com os melhores pacotes de viagem. Aventuras inesquecíveis esperam por você com a JA Excursões.',
+  description: 'Soluções tecnológicas inovadoras para transformar o seu negócio. Parceria, qualidade e inovação com a PiTech Sistemas.',
   traveler_image: 'https://images.unsplash.com/photo-1551632811-561732d1e306?w=600&q=80',
   badge_number: '60%',
   badge_text: 'DESCONTO',

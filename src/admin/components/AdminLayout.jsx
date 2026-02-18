@@ -30,7 +30,7 @@ export default function AdminLayout() {
       <aside className={`admin-sidebar ${sidebarOpen ? 'open' : ''}`}>
         <div className="sidebar-header">
           <div className="sidebar-logo">
-            <img src="/logo-jotta.png" alt="Jotta Excursões" className="sidebar-logo-img" />
+            <img src="/logo-jotta.png" alt="PiTech Sistemas" className="sidebar-logo-img" />
           </div>
           <button className="sidebar-close" onClick={() => setSidebarOpen(false)}>
             <i className="fas fa-times"></i>

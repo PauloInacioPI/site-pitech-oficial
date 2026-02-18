@@ -1,6 +1,6 @@
 import jwt from 'jsonwebtoken'
 
-const JWT_SECRET = 'jotta-excursoes-secret-2026'
+const JWT_SECRET = 'pitech-sistemas-secret-2026'
 
 export function generateToken(admin) {
   return jwt.sign({ id: admin.id, email: admin.email, nome: admin.nome }, JWT_SECRET, { expiresIn: '24h' })

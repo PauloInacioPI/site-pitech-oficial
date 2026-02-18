@@ -35,16 +35,16 @@ export default function Stats() {
             <span className="stats-big-number"><AnimatedNumber target={48} /></span>
             <span className="stats-plus">+</span>
           </div>
-          <h2>Passeios e Pacotes de Viagem, <span className="highlight">Globalmente</span></h2>
-          <p>Oferecemos os melhores pacotes de viagem para destinos ao redor do mundo, com experiências únicas e preços imbatíveis.</p>
+          <h2>Soluções em Tecnologia, <span className="highlight">Resultados Reais</span></h2>
+          <p>Desenvolvemos sistemas personalizados para empresas de todos os portes, com qualidade, agilidade e suporte dedicado.</p>
           <div className="stats-row">
             <div className="stat-item">
               <div><span className="stat-number"><AnimatedNumber target={500} /></span><span className="stat-suffix">+</span></div>
-              <span className="stat-label">Clientes Felizes</span>
+              <span className="stat-label">Clientes Atendidos</span>
             </div>
             <div className="stat-item">
               <div><span className="stat-number"><AnimatedNumber target={120} /></span><span className="stat-suffix">+</span></div>
-              <span className="stat-label">Destinos</span>
+              <span className="stat-label">Projetos Entregues</span>
             </div>
             <div className="stat-item">
               <div><span className="stat-number"><AnimatedNumber target={15} /></span><span className="stat-suffix">+</span></div>

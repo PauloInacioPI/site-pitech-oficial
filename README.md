@@ -1,12 +1,12 @@
 <p align="center">
-  <img src="public/logo-jotta.png" alt="JA Excursoes" width="180" />
+  <img src="public/logo-jotta.png" alt="PiTech Sistemas" width="180" />
 </p>
 
-<h1 align="center">JA Excursoes</h1>
+<h1 align="center">PiTech Sistemas</h1>
 
 <p align="center">
-  <strong>Plataforma completa de reservas de excursoes</strong><br/>
-  Sistema fullstack com vitrine publica, fluxo de reserva com selecao de assentos, pagamento via PIX e Stripe, e painel administrativo.
+  <strong>Plataforma completa de gestao de servicos e contratos</strong><br/>
+  Sistema fullstack com vitrine publica, fluxo de contratacao, pagamento via PIX e Stripe, e painel administrativo.
 </p>
 
 <p align="center">
@@ -23,20 +23,19 @@
 
 ### Site Publico
 
-- **Vitrine de excursoes** com carrossel de banners dinamico
-- **Selecao interativa de assentos** no mapa do onibus (11 fileiras x 4 colunas)
-- **Fluxo de reserva completo** em etapas: detalhes > assentos > dados > pagamento > confirmacao
+- **Vitrine de servicos** com carrossel de banners dinamico
+- **Fluxo de contratacao completo** em etapas: detalhes > dados > pagamento > confirmacao
 - **Pagamento via PIX** com geracao de QR Code automatica
 - **Pagamento via cartao** com redirecionamento para Stripe Checkout
-- **Consulta de reserva** pelo codigo de reserva
+- **Consulta de pedido** pelo codigo de reserva
 - **Design responsivo** com animacoes e transicoes suaves
 
 ### Painel Administrativo
 
-- **Dashboard** com cards de estatisticas, receita por viagem, barras de progresso e reservas recentes
-- **Gestao de viagens** - CRUD completo com upload de imagem, categorias, assentos e precos
-- **Modal de detalhes** com ocupacao, faturamento, projecao e ultimas reservas
-- **Gestao de reservas** - visualizar, confirmar, cancelar e atualizar status de pagamento
+- **Dashboard** com cards de estatisticas, receita por projeto, barras de progresso e pedidos recentes
+- **Gestao de servicos** - CRUD completo com upload de imagem, categorias e precos
+- **Modal de detalhes** com ocupacao, faturamento, projecao e ultimos pedidos
+- **Gestao de pedidos** - visualizar, confirmar, cancelar e atualizar status de pagamento
 - **Configuracoes** do site (banners, informacoes de contato)
 - **Autenticacao JWT** com sessao persistente
 
@@ -66,8 +65,8 @@
 ### 1. Clone o repositorio
 
 ```bash
-git clone https://github.com/PauloInacioPI/jotta.git
-cd jotta
+git clone https://github.com/PauloInacioPI/site-pitech-oficial.git
+cd site-pitech-oficial
 ```
 
 ### 2. Instale as dependencias
@@ -88,7 +87,7 @@ Edite o `.env` com suas credenciais:
 DB_HOST=localhost
 DB_USER=root
 DB_PASSWORD=sua_senha
-DB_NAME=jotta_excursoes
+DB_NAME=pitech_sistemas
 
 STRIPE_SECRET_KEY=sk_test_sua_chave
 STRIPE_WEBHOOK_SECRET=whsec_sua_chave
@@ -96,7 +95,7 @@ STRIPE_WEBHOOK_SECRET=whsec_sua_chave
 
 ### 4. Configure o banco de dados
 
-Crie o banco `jotta_excursoes` no MySQL e execute o schema.
+Crie o banco `pitech_sistemas` no MySQL e execute o schema.
 
 ### 5. Inicie o projeto
 
@@ -115,20 +114,21 @@ Acesse: [http://localhost:5173](http://localhost:5173)
 ## Estrutura do Projeto
 
 ```
-ja-excursoes-react/
+pitech-sistemas/
 ├── public/                    # Assets estaticos
 ├── src/
 │   ├── components/            # Componentes do site publico
 │   │   ├── Header.jsx
 │   │   ├── Hero.jsx           # Carrossel de banners
-│   │   ├── BookingFlow.jsx    # Fluxo de reserva completo
-│   │   ├── Destinations.jsx
-│   │   ├── Packages.jsx
+│   │   ├── BookingFlow.jsx    # Fluxo de contratacao
+│   │   ├── Steps.jsx
+│   │   ├── Stats.jsx
+│   │   ├── Experience.jsx
 │   │   └── ...
 │   ├── styles/                # CSS dos componentes publicos
 │   ├── hooks/                 # Custom hooks (useInView)
 │   └── admin/
-│       ├── components/        # Dashboard, Trips, Bookings, Settings
+│       ├── components/        # Dashboard, Servicos, Pedidos, Settings
 │       └── styles/            # CSS do painel admin
 ├── server/
 │   ├── index.js               # Entry point + Stripe webhook
@@ -137,62 +137,14 @@ ja-excursoes-react/
 │   └── routes/
 │       ├── auth.js            # Login
 │       ├── dashboard.js       # Estatisticas
-│       ├── trips.js           # CRUD viagens
-│       ├── bookings.js        # Gestao reservas
+│       ├── trips.js           # CRUD servicos
+│       ├── bookings.js        # Gestao pedidos
 │       ├── settings.js        # Configuracoes
 │       ├── upload.js          # Upload de imagens
 │       └── public.js          # API publica + Stripe
 ├── .env.example               # Template de variaveis
 ├── package.json
 └── vite.config.js
-```
-
----
-
-## API Endpoints
-
-### Publicos
-
-| Metodo | Rota | Descricao |
-|--------|------|-----------|
-| GET | `/api/public/banners` | Slides do carrossel |
-| GET | `/api/public/trips` | Viagens ativas |
-| GET | `/api/public/trips/:id` | Detalhes da viagem |
-| GET | `/api/public/trips/:id/seats` | Assentos disponiveis |
-| POST | `/api/public/bookings` | Criar reserva |
-| GET | `/api/public/bookings/:code` | Consultar reserva |
-| POST | `/api/public/bookings/:id/pix` | Gerar PIX |
-| POST | `/api/public/bookings/:id/checkout` | Stripe Checkout |
-
-### Admin (requer JWT)
-
-| Metodo | Rota | Descricao |
-|--------|------|-----------|
-| POST | `/api/auth/login` | Login admin |
-| GET | `/api/dashboard/stats` | Estatisticas gerais |
-| GET | `/api/dashboard/revenue-by-trip` | Receita por viagem |
-| GET/POST/PUT/DELETE | `/api/trips` | CRUD viagens |
-| GET | `/api/trips/:id/stats` | Detalhes da viagem |
-| GET | `/api/bookings` | Listar reservas |
-| PUT | `/api/bookings/:id/status` | Atualizar status |
-| PUT | `/api/bookings/:id/payment` | Atualizar pagamento |
-
----
-
-## Stripe
-
-Para testar pagamentos com cartao, use o cartao de teste:
-
-```
-Numero: 4242 4242 4242 4242
-Validade: qualquer data futura
-CVC: qualquer 3 digitos
-```
-
-Para receber webhooks em desenvolvimento:
-
-```bash
-stripe listen --forward-to localhost:3002/api/public/stripe/webhook
 ```
 
 ---
@@ -211,4 +163,4 @@ npm run lint      # Lint do codigo
 
 ## Licenca
 
-Projeto privado - Todos os direitos reservados.
+Projeto privado - Todos os direitos reservados - PiTech Sistemas.
