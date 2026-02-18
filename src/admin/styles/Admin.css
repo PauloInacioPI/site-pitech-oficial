@@ -9,7 +9,7 @@
 /* ===== SIDEBAR ===== */
 .admin-sidebar {
   width: 270px;
-  background: linear-gradient(180deg, #0a1e3d 0%, #0f2d54 50%, #1a4b8c 100%);
+  background: linear-gradient(180deg, #000000 0%, #000000 50%, #111111 100%);
   color: #fff;
   display: flex;
   flex-direction: column;
@@ -207,7 +207,7 @@
 }
 
 .topbar-link:hover {
-  color: #1a4b8c;
+  color: #111111;
 }
 
 .topbar-user {
@@ -223,7 +223,7 @@
   width: 36px;
   height: 36px;
   border-radius: 10px;
-  background: linear-gradient(135deg, #1a4b8c, #2d7ab8);
+  background: linear-gradient(135deg, #111111, #333333);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -276,13 +276,13 @@
 }
 
 .btn-admin-primary {
-  background: linear-gradient(135deg, #1a4b8c, #2d7ab8);
+  background: linear-gradient(135deg, #111111, #333333);
   color: #fff;
 }
 
 .btn-admin-primary:hover {
   transform: translateY(-1px);
-  box-shadow: 0 4px 15px rgba(26,75,140,0.3);
+  box-shadow: 0 4px 15px rgba(0,0,0,0.3);
 }
 
 .btn-admin-ghost {
@@ -338,11 +338,11 @@
 }
 
 .card-header h3 i {
-  color: #1a4b8c;
+  color: #111111;
 }
 
 .card-link {
-  color: #1a4b8c;
+  color: #111111;
   font-size: 0.85rem;
   font-weight: 600;
   text-decoration: none;
@@ -429,7 +429,7 @@
   font-family: 'Courier New', monospace;
   font-weight: 700;
   font-size: 0.85rem;
-  color: #1a4b8c;
+  color: #111111;
   background: #eff6ff;
   padding: 3px 10px;
   border-radius: 6px;
@@ -466,7 +466,7 @@
 
 .admin-loading i {
   font-size: 1.5rem;
-  color: #1a4b8c;
+  color: #111111;
 }
 
 /* Toolbar */
@@ -506,7 +506,7 @@
 }
 
 .search-box input:focus {
-  border-color: #1a4b8c;
+  border-color: #111111;
 }
 
 .toolbar-count {
@@ -534,13 +534,13 @@
 }
 
 .filter-btn:hover {
-  border-color: #1a4b8c;
-  color: #1a4b8c;
+  border-color: #111111;
+  color: #111111;
 }
 
 .filter-btn.active {
-  background: #1a4b8c;
-  border-color: #1a4b8c;
+  background: #111111;
+  border-color: #111111;
   color: #fff;
 }
 
@@ -726,9 +726,9 @@
 .form-group input:focus,
 .form-group select:focus,
 .form-group textarea:focus {
-  border-color: #1a4b8c;
+  border-color: #111111;
   background: #fff;
-  box-shadow: 0 0 0 3px rgba(26,75,140,0.1);
+  box-shadow: 0 0 0 3px rgba(0,0,0,0.1);
 }
 
 .form-group textarea {
@@ -745,7 +745,7 @@
 .form-check input[type="checkbox"] {
   width: 20px;
   height: 20px;
-  accent-color: #1a4b8c;
+  accent-color: #111111;
   cursor: pointer;
 }
 

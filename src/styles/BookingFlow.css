@@ -42,7 +42,7 @@
   background: var(--primary);
   color: var(--white);
   transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(26, 75, 140, 0.3);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
 }
 
 .bf-ver-todas button i {
@@ -301,7 +301,7 @@
 }
 .bf-btn-primary:hover {
   transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(26,75,140,0.3);
+  box-shadow: 0 8px 25px rgba(0,0,0,0.3);
 }
 .bf-btn-primary:disabled { opacity: 0.6; cursor: not-allowed; transform: none; box-shadow: none; }
 
@@ -378,7 +378,7 @@
   font-size: 0.78rem;
   background: var(--primary);
   color: #fff;
-  box-shadow: 0 2px 8px rgba(26, 75, 140, 0.25);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
 }
 
 .bf-detail-info h2 {
@@ -664,7 +664,7 @@
 .seat.seat-available:hover {
   background: #bfdbfe;
   transform: scale(1.05);
-  box-shadow: 0 2px 8px rgba(26,75,140,0.2);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
 }
 
 .seat.seat-selected {
@@ -851,7 +851,7 @@
 
 .bf-form-group input:focus {
   border-color: var(--primary);
-  box-shadow: 0 0 0 4px rgba(26,75,140,0.1);
+  box-shadow: 0 0 0 4px rgba(0,0,0,0.1);
 }
 
 .bf-checkout-seats {
@@ -1001,7 +1001,7 @@
 .bf-pay-card.active {
   border-color: var(--primary);
   background: #eff6ff;
-  box-shadow: 0 0 0 3px rgba(26,75,140,0.15);
+  box-shadow: 0 0 0 3px rgba(0,0,0,0.15);
 }
 
 .bf-pay-icon {

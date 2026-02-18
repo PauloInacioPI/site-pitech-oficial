@@ -89,13 +89,13 @@
 }
 
 .image-tab:hover {
-  border-color: #1a4b8c;
-  color: #1a4b8c;
+  border-color: #111111;
+  color: #111111;
 }
 
 .image-tab.active {
-  background: #1a4b8c;
-  border-color: #1a4b8c;
+  background: #111111;
+  border-color: #111111;
   color: #fff;
 }
 
@@ -107,7 +107,7 @@
 }
 
 .upload-area:hover {
-  border-color: #1a4b8c;
+  border-color: #111111;
   background: #eff6ff;
 }
 
@@ -125,7 +125,7 @@
 
 .upload-label i {
   font-size: 1.3rem;
-  color: #1a4b8c;
+  color: #111111;
 }
 
 /* ===== IMAGE PREVIEW ===== */
@@ -249,7 +249,7 @@
 }
 
 .trip-detail-meta i {
-  color: #1a4b8c;
+  color: #111111;
   font-size: 0.78rem;
 }
 
@@ -269,7 +269,7 @@
 .trip-detail-current {
   font-size: 1.5rem;
   font-weight: 700;
-  color: #1a4b8c;
+  color: #111111;
 }
 
 .trip-detail-per {
