@@ -29,15 +29,21 @@ export default function Header() {
         </a>
 
         <nav className={`nav ${menuOpen ? 'open' : ''}`}>
-          {['inicio', 'destinos', 'pacotes', 'sobre', 'contato'].map(id => (
+          {[
+            { id: 'inicio', label: 'Início' },
+            { id: 'projetos', label: 'Projetos' },
+            { id: 'pacotes', label: 'Planos' },
+            { id: 'sobre', label: 'Sobre' },
+            { id: 'contato', label: 'Contato' },
+          ].map(({ id, label }) => (
             <a key={id} href={`#${id}`} onClick={e => handleNavClick(e, id)}>
-              {id.charAt(0).toUpperCase() + id.slice(1)}
+              {label}
             </a>
           ))}
         </nav>
 
-        <a href="#pacotes" className="btn btn-primary btn-header" onClick={e => handleNavClick(e, 'pacotes')}>
-          Reserve Agora
+        <a href="#contato" className="btn btn-primary btn-header" onClick={e => handleNavClick(e, 'contato')}>
+          Fale Conosco
         </a>
 
         <button className="menu-toggle" onClick={() => setMenuOpen(!menuOpen)}>

@@ -4,40 +4,40 @@ import '../styles/Packages.css'
 
 const packages = [
   {
-    name: 'Básico',
-    price: '899',
+    name: 'Starter',
+    price: '1.497',
     features: [
-      { text: 'Passagem aérea inclusa', included: true },
-      { text: '3 noites de hospedagem', included: true },
-      { text: 'Café da manhã', included: true },
-      { text: 'Traslado aeroporto', included: true },
-      { text: 'Passeios guiados', included: false },
-      { text: 'Seguro viagem premium', included: false },
+      { text: 'Landing Page responsiva', included: true },
+      { text: 'Até 5 seções', included: true },
+      { text: 'Formulário de contato', included: true },
+      { text: 'Integração WhatsApp', included: true },
+      { text: 'Painel administrativo', included: false },
+      { text: 'Suporte prioritário', included: false },
     ],
   },
   {
-    name: 'Premium',
-    price: '1.899',
+    name: 'Pro',
+    price: '3.497',
     featured: true,
     features: [
-      { text: 'Passagem aérea inclusa', included: true },
-      { text: '5 noites de hospedagem', included: true },
-      { text: 'Pensão completa', included: true },
-      { text: 'Traslado aeroporto', included: true },
-      { text: 'Passeios guiados', included: true },
-      { text: 'Seguro viagem premium', included: true },
+      { text: 'Site institucional completo', included: true },
+      { text: 'Seções ilimitadas', included: true },
+      { text: 'Formulários avançados', included: true },
+      { text: 'Integração WhatsApp', included: true },
+      { text: 'Painel administrativo', included: true },
+      { text: 'Suporte prioritário', included: true },
     ],
   },
   {
-    name: 'Luxo',
-    price: '3.499',
+    name: 'Enterprise',
+    price: 'Sob consulta',
     features: [
-      { text: 'Passagem executiva', included: true },
-      { text: '7 noites resort 5 estrelas', included: true },
-      { text: 'All inclusive', included: true },
-      { text: 'Transfer VIP', included: true },
-      { text: 'Tours exclusivos', included: true },
-      { text: 'Concierge 24h', included: true },
+      { text: 'Sistema personalizado', included: true },
+      { text: 'Banco de dados dedicado', included: true },
+      { text: 'Pagamentos integrados', included: true },
+      { text: 'API e integrações', included: true },
+      { text: 'Painel administrativo', included: true },
+      { text: 'Suporte 24h dedicado', included: true },
     ],
   },
 ]
@@ -54,8 +54,8 @@ export default function Packages() {
       </div>
       <div className="container packages-content">
         <div className="section-header light">
-          <p className="section-tag">Nossos Pacotes</p>
-          <h2 className="section-title">Pronto Para Viajar <span className="highlight">O Mundo</span></h2>
+          <p className="section-tag">Nossos Planos</p>
+          <h2 className="section-title">Escolha o Plano <span className="highlight">Ideal</span></h2>
         </div>
         <div className="packages-grid">
           {packages.map((pkg, i) => (
@@ -68,9 +68,9 @@ export default function Packages() {
               <div className="package-header">
                 <h3>{pkg.name}</h3>
                 <div className="package-price">
-                  <span className="currency">R$</span>
+                  {pkg.price !== 'Sob consulta' && <span className="currency">R$</span>}
                   <span className="amount">{pkg.price}</span>
-                  <span className="period">/pessoa</span>
+                  {pkg.price !== 'Sob consulta' && <span className="period">/projeto</span>}
                 </div>
               </div>
               <ul className="package-features">
@@ -82,7 +82,7 @@ export default function Packages() {
                 ))}
               </ul>
               <a href="#contato" className={`btn btn-package ${pkg.featured ? 'btn-package-featured' : ''}`}>
-                Reservar Agora
+                Solicitar Orçamento
               </a>
             </div>
           ))}
