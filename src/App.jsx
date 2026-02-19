@@ -5,6 +5,7 @@ import Steps from './components/Steps'
 import Stats from './components/Stats'
 import Experience from './components/Experience'
 import Destinations from './components/Destinations'
+import Reach from './components/Reach'
 import Packages from './components/Packages'
 import Contact from './components/Contact'
 import Footer from './components/Footer'
@@ -24,6 +25,7 @@ function HomePage() {
       <Stats />
       <Destinations />
       <Experience />
+      <Reach />
       <Packages />
       <Contact />
       <Footer />
