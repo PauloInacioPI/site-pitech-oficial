@@ -45,8 +45,8 @@ export default function Settings() {
       })
       .catch(() => setLoading(false))
 
-    // Carregar dados Stripe
-    fetch(`${API}/stripe-account`, { headers: { Authorization: `Bearer ${getToken()}` } })
+    // Carregar dados de pagamento
+    fetch(`${API}/payment-config`, { headers: { Authorization: `Bearer ${getToken()}` } })
       .then(r => r.json())
       .then(data => {
         if (data) {
@@ -66,7 +66,7 @@ export default function Settings() {
     setSavingStripe(true)
     setStripeMsg(null)
     try {
-      const res = await fetch(`${API}/stripe-account`, {
+      const res = await fetch(`${API}/payment-config`, {
         method: 'PUT',
         headers: { Authorization: `Bearer ${getToken()}`, 'Content-Type': 'application/json' },
         body: JSON.stringify(stripeAccount),
@@ -86,7 +86,7 @@ export default function Settings() {
     setConnectingStripe(true)
     setStripeMsg(null)
     try {
-      const res = await fetch(`${API}/stripe-account/create`, {
+      const res = await fetch(`${API}/payment-config/create`, {
         method: 'POST',
         headers: { Authorization: `Bearer ${getToken()}` },
       })
@@ -102,7 +102,7 @@ export default function Settings() {
 
   const refreshStripeStatus = async () => {
     try {
-      const res = await fetch(`${API}/stripe-account/status`, { headers: { Authorization: `Bearer ${getToken()}` } })
+      const res = await fetch(`${API}/payment-config/status`, { headers: { Authorization: `Bearer ${getToken()}` } })
       const data = await res.json()
       setStripeStatus({ has_account: true, status: data.status, charges_enabled: data.charges_enabled, payouts_enabled: data.payouts_enabled })
       setStripeMsg({ type: 'success', text: `Status: ${data.status}` })
@@ -361,27 +361,27 @@ export default function Settings() {
                     <div className="form-row">
                       <div className="form-group">
                         <label>Subtítulo</label>
-                        <input type="text" value={slideForm.subtitle || ''} onChange={e => setSlideForm({ ...slideForm, subtitle: e.target.value })} placeholder="Ex: Descubra" />
+                        <input type="text" value={slideForm.subtitle || ''} onChange={e => setSlideForm({ ...slideForm, subtitle: e.target.value })} placeholder="Ex: Soluções em" />
                       </div>
                       <div className="form-group">
                         <label>Título</label>
-                        <input type="text" value={slideForm.title || ''} onChange={e => setSlideForm({ ...slideForm, title: e.target.value })} placeholder="Ex: O Mundo" />
+                        <input type="text" value={slideForm.title || ''} onChange={e => setSlideForm({ ...slideForm, title: e.target.value })} placeholder="Ex: Tecnologia" />
                       </div>
                     </div>
 
                     <div className="form-group">
                       <label>Descrição</label>
-                      <textarea value={slideForm.description || ''} onChange={e => setSlideForm({ ...slideForm, description: e.target.value })} rows={3} placeholder="Texto descritivo do slide..." />
+                      <textarea value={slideForm.description || ''} onChange={e => setSlideForm({ ...slideForm, description: e.target.value })} rows={3} placeholder="Descrição do slide para o site da empresa..." />
                     </div>
 
                     <div className="form-row">
                       <div className="form-group">
                         <label>Texto Botão Primário</label>
-                        <input type="text" value={slideForm.btn_primary_text || ''} onChange={e => setSlideForm({ ...slideForm, btn_primary_text: e.target.value })} placeholder="Ex: Explorar Pacotes" />
+                        <input type="text" value={slideForm.btn_primary_text || ''} onChange={e => setSlideForm({ ...slideForm, btn_primary_text: e.target.value })} placeholder="Ex: Nossos Serviços" />
                       </div>
                       <div className="form-group">
                         <label>Link Botão Primário</label>
-                        <input type="text" value={slideForm.btn_primary_link || ''} onChange={e => setSlideForm({ ...slideForm, btn_primary_link: e.target.value })} placeholder="Ex: #pacotes" />
+                        <input type="text" value={slideForm.btn_primary_link || ''} onChange={e => setSlideForm({ ...slideForm, btn_primary_link: e.target.value })} placeholder="Ex: #projetos" />
                       </div>
                     </div>
 
@@ -397,7 +397,7 @@ export default function Settings() {
                     </div>
 
                     <div className="form-group">
-                      <label>Imagem do Viajante</label>
+                      <label>Imagem Ilustrativa</label>
                       <div className="image-input-group">
                         <input type="text" value={slideForm.traveler_image || ''} onChange={e => setSlideForm({ ...slideForm, traveler_image: e.target.value })} placeholder="URL da imagem ou faça upload" />
                         <input type="file" ref={travelerFileRef} accept="image/*" onChange={handleTravelerUpload} style={{ display: 'none' }} />
@@ -473,6 +473,14 @@ export default function Settings() {
                 <label><i className="fab fa-youtube text-accent"></i> YouTube</label>
                 <input type="url" value={getSocial('youtube')} onChange={e => updateSocial('youtube', e.target.value)} placeholder="https://youtube.com/..." />
               </div>
+              <div className="form-group">
+                <label><i className="fab fa-linkedin text-accent"></i> LinkedIn</label>
+                <input type="url" value={getSocial('linkedin')} onChange={e => updateSocial('linkedin', e.target.value)} placeholder="https://linkedin.com/company/..." />
+              </div>
+              <div className="form-group">
+                <label><i className="fab fa-github text-accent"></i> GitHub</label>
+                <input type="url" value={getSocial('github')} onChange={e => updateSocial('github', e.target.value)} placeholder="https://github.com/..." />
+              </div>
             </div>
           </div>
 
@@ -482,16 +490,20 @@ export default function Settings() {
             </div>
             <div className="card-body">
               <div className="form-group">
-                <label>Clientes</label>
-                <input type="text" value={getStat('clientes')} onChange={e => updateStats('clientes', e.target.value)} placeholder="Ex: 5.000+" />
+                <label>Projetos Entregues</label>
+                <input type="text" value={getStat('projetos_entregues')} onChange={e => updateStats('projetos_entregues', e.target.value)} placeholder="Ex: 150+" />
               </div>
               <div className="form-group">
-                <label>Destinos</label>
-                <input type="text" value={getStat('destinos')} onChange={e => updateStats('destinos', e.target.value)} placeholder="Ex: 50+" />
+                <label>Clientes Ativos</label>
+                <input type="text" value={getStat('clientes_ativos')} onChange={e => updateStats('clientes_ativos', e.target.value)} placeholder="Ex: 80+" />
               </div>
               <div className="form-group">
-                <label>Avaliação</label>
-                <input type="text" value={getStat('avaliacao')} onChange={e => updateStats('avaliacao', e.target.value)} placeholder="Ex: 4.9" />
+                <label>Anos de Experiência</label>
+                <input type="text" value={getStat('anos_experiencia')} onChange={e => updateStats('anos_experiencia', e.target.value)} placeholder="Ex: 10+" />
+              </div>
+              <div className="form-group">
+                <label>Satisfação</label>
+                <input type="text" value={getStat('satisfacao')} onChange={e => updateStats('satisfacao', e.target.value)} placeholder="Ex: 98%" />
               </div>
             </div>
           </div>

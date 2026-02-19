@@ -1,21 +1,4 @@
-/* ===== DEPOSIT INPUT ===== */
-.deposit-input-wrap {
-  position: relative;
-}
-
-.deposit-input-wrap input {
-  padding-right: 10px;
-}
-
-.deposit-hint {
-  display: block;
-  margin-top: 4px;
-  font-size: 0.78rem;
-  color: var(--accent, #38bdf8);
-  font-weight: 600;
-}
-
-/* ===== TRIPS PAGE ===== */
+/* ===== TRIPS/PROJECTS PAGE ===== */
 .trip-cell {
   display: flex;
   align-items: center;
@@ -63,6 +46,49 @@
   font-size: 0.65rem;
   font-weight: 600;
   width: fit-content;
+}
+
+/* ===== PROJECT TYPE BADGES ===== */
+.badge-type-site_template { background: #dbeafe; color: #1e40af; }
+.badge-type-saas { background: #ede9fe; color: #5b21b6; }
+.badge-type-sistema_personalizado { background: #fce7f3; color: #9d174d; }
+.badge-type-app_web { background: #d1fae5; color: #065f46; }
+.badge-type-consultoria { background: #fef3c7; color: #92400e; }
+
+/* ===== PROJECT STATUS BADGES ===== */
+.badge-status-em_andamento { background: #dbeafe; color: #1e40af; }
+.badge-status-concluido { background: #dcfce7; color: #166534; }
+.badge-status-pausado { background: #fef3c7; color: #92400e; }
+.badge-status-cancelado { background: #fee2e2; color: #991b1b; }
+
+/* ===== MINI PROGRESS BAR (table rows) ===== */
+.progress-mini {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.progress-mini-bar {
+  flex: 1;
+  height: 6px;
+  background: #e5e7eb;
+  border-radius: 3px;
+  overflow: hidden;
+  min-width: 60px;
+}
+
+.progress-mini-fill {
+  height: 100%;
+  border-radius: 3px;
+  background: linear-gradient(90deg, #3b82f6, #1d4ed8);
+  transition: width 0.4s ease;
+}
+
+.progress-mini-text {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: #374151;
+  min-width: 32px;
 }
 
 /* ===== IMAGE TABS ===== */
@@ -179,7 +205,29 @@
   background: #f0f7ff !important;
 }
 
-/* ===== TRIP DETAIL MODAL ===== */
+/* ===== FORM SECTION TITLES ===== */
+.form-section-title {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #374151;
+  margin: 20px 0 10px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid #f3f4f6;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.form-section-title:first-of-type {
+  margin-top: 0;
+}
+
+.form-section-title i {
+  color: #1a4b8c;
+  font-size: 0.82rem;
+}
+
+/* ===== PROJECT DETAIL MODAL ===== */
 .trip-detail-modal {
   max-width: 820px;
   width: 95vw;
@@ -191,7 +239,7 @@
   overflow-y: auto;
 }
 
-/* Top: imagem + info */
+/* Top: image + info */
 .trip-detail-top {
   display: flex;
   gap: 24px;
@@ -258,12 +306,6 @@
   align-items: baseline;
   gap: 10px;
   margin-top: auto;
-}
-
-.trip-detail-original {
-  font-size: 0.85rem;
-  color: #9ca3af;
-  text-decoration: line-through;
 }
 
 .trip-detail-current {
@@ -395,9 +437,54 @@
   display: block;
 }
 
-/* ===== RECENT BOOKINGS TABLE ===== */
+/* ===== PROJECT LINKS ===== */
+.project-links {
+  margin-bottom: 24px;
+}
+
+.project-links h4 {
+  font-size: 0.95rem;
+  color: #374151;
+  margin: 0 0 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.project-links h4 i {
+  color: #6b7280;
+}
+
+.project-link {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px;
+  background: #f9fafb;
+  border-radius: 10px;
+  border: 1px solid #e5e7eb;
+  text-decoration: none;
+  color: #1a4b8c;
+  font-size: 0.85rem;
+  font-weight: 500;
+  transition: all 0.2s;
+  margin-bottom: 8px;
+}
+
+.project-link:hover {
+  background: #eff6ff;
+  border-color: #1a4b8c;
+}
+
+.project-link i {
+  width: 20px;
+  text-align: center;
+}
+
+/* ===== RECENT CONTRACTS TABLE ===== */
 .trip-detail-bookings {
   margin-top: 4px;
+  margin-bottom: 20px;
 }
 
 .trip-detail-bookings h4 {
@@ -417,7 +504,40 @@
   font-size: 0.82rem;
 }
 
-/* ===== RESPONSIVO ===== */
+/* ===== RANGE INPUT ===== */
+input[type="range"] {
+  width: 100%;
+  height: 6px;
+  -webkit-appearance: none;
+  appearance: none;
+  background: #e5e7eb;
+  border-radius: 3px;
+  outline: none;
+  margin: 8px 0;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #1a4b8c;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(26, 75, 140, 0.3);
+}
+
+input[type="range"]::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #1a4b8c;
+  cursor: pointer;
+  border: none;
+  box-shadow: 0 2px 6px rgba(26, 75, 140, 0.3);
+}
+
+/* ===== RESPONSIVE ===== */
 @media (max-width: 768px) {
   .trip-detail-top {
     flex-direction: column;

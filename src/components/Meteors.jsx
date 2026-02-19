@@ -8,10 +8,10 @@ export default function Meteors({ number = 20 }) {
           key={`meteor-${i}`}
           className="meteor"
           style={{
-            top: `${Math.floor(Math.random() * 60 - 10)}%`,
+            top: `${Math.floor(Math.random() * 80 - 10)}%`,
             left: `${Math.floor(Math.random() * 120 - 10)}%`,
-            animationDelay: `${(Math.random() * 4 + 0.2).toFixed(2)}s`,
-            animationDuration: `${Math.floor(Math.random() * 8 + 3)}s`,
+            animationDelay: `${(Math.random() * 6 + 0.2).toFixed(2)}s`,
+            animationDuration: `${Math.floor(Math.random() * 5 + 4)}s`,
           }}
         />
       ))}
