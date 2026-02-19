@@ -32,7 +32,7 @@ export default function Header() {
           {[
             { id: 'inicio', label: 'Início' },
             { id: 'projetos', label: 'Projetos' },
-            { id: 'pacotes', label: 'Planos' },
+            // { id: 'pacotes', label: 'Planos' },
             { id: 'sobre', label: 'Sobre' },
             { id: 'contato', label: 'Contato' },
           ].map(({ id, label }) => (

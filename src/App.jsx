@@ -26,7 +26,7 @@ function HomePage() {
       <Destinations />
       <Experience />
       <Reach />
-      <Packages />
+      {/* <Packages /> */}
       <Contact />
       <Footer />
     </>

@@ -17,7 +17,7 @@ export default function Footer() {
           <h4>Links Rápidos</h4>
           <a href="#inicio">Início</a>
           <a href="#projetos">Projetos</a>
-          <a href="#pacotes">Planos</a>
+          {/* <a href="#pacotes">Planos</a> */}
           <a href="#sobre">Sobre Nós</a>
         </div>
         <div className="footer-col">
