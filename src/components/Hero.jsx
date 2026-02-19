@@ -3,7 +3,7 @@ import '../styles/Hero.css'
 
 const defaultSlide = {
   type: 'text',
-  bg_video: 'https://assets.mixkit.co/videos/34314/34314-720.mp4',
+  bg_video: 'https://assets.mixkit.co/videos/29351/29351-720.mp4',
   bg_image: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=1600&q=80',
   subtitle: 'PiTech Sistemas',
   title: 'Desenvolvemos sistemas que geram resultado.',
