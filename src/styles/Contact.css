@@ -176,6 +176,16 @@
   box-shadow: var(--shadow-lg);
 }
 
+.contact-form-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.contact-form-toggle {
+  display: none;
+}
+
 .contact-form-box h3 {
   font-size: 1.2rem;
   font-weight: 700;
@@ -485,6 +495,84 @@
     font-size: 0.92rem;
   }
 
+  /* Text overflow fix */
+  .contact-card-text strong {
+    font-size: 0.85rem;
+    word-break: break-word;
+    overflow-wrap: break-word;
+  }
+
+  .contact-card-text span {
+    font-size: 0.75rem;
+  }
+
+  .contact-card-icon {
+    width: 44px;
+    height: 44px;
+    min-width: 44px;
+    font-size: 1.1rem;
+    border-radius: 12px;
+  }
+
+  .contact-cards {
+    gap: 12px;
+  }
+
+  .contact-card {
+    padding: 18px 16px;
+    gap: 14px;
+  }
+
+  /* Collapsible form */
+  .contact-form-header {
+    cursor: pointer;
+  }
+
+  .contact-form-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+    background: var(--gray-50);
+    color: var(--gray-500);
+    font-size: 0.8rem;
+    flex-shrink: 0;
+    transition: all 0.3s ease;
+  }
+
+  .contact-form-box.form-open .contact-form-toggle {
+    background: rgba(26, 75, 140, 0.08);
+    color: var(--primary);
+  }
+
+  .contact-form-box .contact-form-subtitle {
+    margin-bottom: 0;
+    padding-bottom: 0;
+    border-bottom: none;
+  }
+
+  .contact-form-box .contact-form {
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition: max-height 0.4s ease, opacity 0.3s ease, margin-top 0.3s ease;
+    margin-top: 0;
+  }
+
+  .contact-form-box.form-open .contact-form-subtitle {
+    margin-bottom: 28px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--gray-100);
+  }
+
+  .contact-form-box.form-open .contact-form {
+    max-height: 800px;
+    opacity: 1;
+    margin-top: 0;
+  }
+
   .contact-form-box {
     padding: 24px 20px;
   }
@@ -493,11 +581,17 @@
     grid-template-columns: 1fr;
   }
 
-  .contact-cards {
-    gap: 12px;
+  /* CTA panel adjustments */
+  .contact-cta-box {
+    padding: 24px 20px;
   }
 
-  .contact-card {
-    padding: 20px 18px;
+  .btn-whatsapp-cta {
+    padding: 13px 20px;
+    font-size: 0.88rem;
+  }
+
+  .contact-trust {
+    padding: 22px 18px;
   }
 }

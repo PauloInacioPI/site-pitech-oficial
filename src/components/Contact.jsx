@@ -16,6 +16,7 @@ const services = [
 export default function Contact() {
   const [form, setForm] = useState({ name: '', email: '', phone: '', service: '', message: '' })
   const [sent, setSent] = useState(false)
+  const [formOpen, setFormOpen] = useState(false)
 
   const handleSubmit = (e) => {
     e.preventDefault()
@@ -85,9 +86,16 @@ export default function Contact() {
         <div className="contact-main">
 
           {/* Form */}
-          <div className="contact-form-box">
-            <h3>Envie sua Solicitação</h3>
-            <p className="contact-form-subtitle">Preencha o formulário e enviaremos pelo WhatsApp</p>
+          <div className={`contact-form-box${formOpen ? ' form-open' : ''}`}>
+            <div className="contact-form-header" onClick={() => setFormOpen(!formOpen)}>
+              <div>
+                <h3>Envie sua Solicitação</h3>
+                <p className="contact-form-subtitle">Preencha o formulário e enviaremos pelo WhatsApp</p>
+              </div>
+              <span className="contact-form-toggle">
+                <i className={`fas fa-chevron-${formOpen ? 'up' : 'down'}`}></i>
+              </span>
+            </div>
             <form onSubmit={handleSubmit} className="contact-form">
               <div className="form-group">
                 <label>Nome completo *</label>
