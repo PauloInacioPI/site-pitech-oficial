@@ -27,13 +27,37 @@
   overflow: hidden;
   background: var(--white);
   box-shadow: var(--shadow-sm);
-  transition: all 0.3s ease;
+  transition: box-shadow 0.3s ease;
   cursor: pointer;
+  position: relative;
+  transform-style: preserve-3d;
 }
 
 .destination-card:hover {
-  transform: translateY(-8px);
-  box-shadow: var(--shadow-lg);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15), 0 0 30px rgba(56, 189, 248, 0.1);
+}
+
+/* TiltCard wrapper styles */
+.tilt-card-wrapper {
+  position: relative;
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+.tilt-card-reflection {
+  position: absolute;
+  inset: 0;
+  border-radius: var(--radius-md);
+  pointer-events: none;
+  z-index: 5;
+}
+
+.tilt-card-glow {
+  position: absolute;
+  inset: -1px;
+  border-radius: var(--radius-md);
+  pointer-events: none;
+  z-index: -1;
 }
 
 .destination-img {

@@ -1,5 +1,6 @@
 import { useRef, useState, useEffect } from 'react'
 import useInView from '../hooks/useInView'
+import TiltCard from './TiltCard'
 import '../styles/Destinations.css'
 
 const templates = [
@@ -218,7 +219,7 @@ export default function Destinations() {
 
   const renderCards = (list, offset = 0) =>
     list.map((proj, i) => (
-      <div
+      <TiltCard
         key={i}
         className={`destination-card fade-up ${isVisible ? 'visible' : ''}`}
         style={{ transitionDelay: `${(i + offset) * 0.07}s` }}
@@ -246,7 +247,7 @@ export default function Destinations() {
           <h3>{proj.name}</h3>
           <p><i className="fas fa-tag"></i> {proj.category}</p>
         </div>
-      </div>
+      </TiltCard>
     ))
 
   return (
