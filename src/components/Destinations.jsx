@@ -120,7 +120,7 @@ const saas = [
     type: 'SaaS',
     status: 'Online',
     img: 'https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=800&q=80',
-    link: 'https://pitech-financas.techfluxar.com/landing',
+    link: 'https://pitechfinancas.techfluxar.com/landing',
     desc: 'Plataforma financeira completa para micro e pequenas empresas. Controle total de entradas, saídas, fluxo de caixa e geração de relatórios — tudo em um painel simples e intuitivo.',
     features: [
       'Controle de receitas e despesas por categoria',
