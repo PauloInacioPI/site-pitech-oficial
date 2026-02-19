@@ -8,7 +8,8 @@ const templates = [
     category: 'Energia Solar',
     type: 'Landing Page',
     status: 'Disponível',
-    img: 'https://images.unsplash.com/photo-1509391366360-2e959784a276?w=800&q=80',
+    icon: 'fa-solar-panel',
+    img: null,
     link: 'https://pitechsolar.netlify.app',
     desc: 'Template profissional para empresas de energia solar. Focado em geração de leads qualificados com formulário inteligente, seção de economia projetada e prova social integrada.',
     features: [
@@ -26,7 +27,8 @@ const templates = [
     category: 'Moda & Vestuário',
     type: 'E-commerce',
     status: 'Disponível',
-    img: 'https://images.unsplash.com/photo-1558769132-cb1aea458c5e?w=800&q=80',
+    icon: 'fa-shirt',
+    img: null,
     link: 'https://modafina.netlify.app',
     desc: 'Loja virtual completa para moda feminina com catálogo dinâmico, experiência de compra fluida e checkout integrado a múltiplos meios de pagamento.',
     features: [
@@ -44,7 +46,8 @@ const templates = [
     category: 'Odontologia',
     type: 'Site Institucional',
     status: 'Disponível',
-    img: 'https://images.unsplash.com/photo-1606811971618-4486d14f3f99?w=800&q=80',
+    icon: 'fa-tooth',
+    img: null,
     link: 'https://mais-sorriso.netlify.app',
     desc: 'Site institucional para clínicas odontológicas com apresentação completa dos serviços, galeria de transformações e agendamento facilitado via WhatsApp ou formulário.',
     features: [
@@ -62,7 +65,8 @@ const templates = [
     category: 'Beleza & Estética',
     type: 'Landing Page',
     status: 'Disponível',
-    img: 'https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?w=800&q=80',
+    icon: 'fa-paint-brush',
+    img: null,
     link: 'https://pitech-maquiagem.netlify.app',
     desc: 'Landing page sofisticada para maquiadoras e profissionais de beleza. Portfólio visual impactante, agenda integrada e CTA direto no WhatsApp para converter visitas em clientes.',
     features: [
@@ -80,7 +84,8 @@ const templates = [
     category: 'Construção Civil',
     type: 'Site Institucional',
     status: 'Disponível',
-    img: 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=800&q=80',
+    icon: 'fa-building',
+    img: null,
     link: 'https://camposconstrutora.netlify.app',
     desc: 'Site corporativo completo para construtoras e incorporadoras. Portfólio de obras com timeline, credenciais técnicas e formulário de orçamento para captação de novos contratos.',
     features: [
@@ -98,7 +103,8 @@ const templates = [
     category: 'Gestão Empresarial',
     type: 'Sistema Web',
     status: 'Disponível',
-    img: 'https://images.unsplash.com/photo-1552664730-d307ca884978?w=800&q=80',
+    icon: 'fa-chart-line',
+    img: null,
     link: 'https://master-gestao.netlify.app',
     desc: 'Sistema web completo para gestão empresarial com dashboard analítico em tempo real, controle de tarefas por equipe e relatórios gerenciais exportáveis.',
     features: [
@@ -222,7 +228,13 @@ export default function Destinations() {
         onKeyDown={e => e.key === 'Enter' && setSelected(proj)}
       >
         <div className="destination-img">
-          <img src={proj.img} alt={proj.name} />
+          {proj.img ? (
+            <img src={proj.img} alt={proj.name} />
+          ) : (
+            <div className="destination-icon-placeholder">
+              <i className={`fas ${proj.icon || 'fa-code'}`}></i>
+            </div>
+          )}
           <div className="destination-overlay">
             <span className="destination-price">{proj.type}</span>
           </div>
@@ -267,7 +279,13 @@ export default function Destinations() {
 
             {/* Coluna esquerda */}
             <div className="proj-modal-left">
-              <img src={selected.img} alt={selected.name} className="proj-modal-img" />
+              {selected.img ? (
+                <img src={selected.img} alt={selected.name} className="proj-modal-img" />
+              ) : (
+                <div className="proj-modal-icon-placeholder">
+                  <i className={`fas ${selected.icon || 'fa-code'}`}></i>
+                </div>
+              )}
               <div className="proj-modal-img-gradient" />
               <div className="proj-modal-img-footer">
                 <span className="proj-modal-badge">{selected.type}</span>

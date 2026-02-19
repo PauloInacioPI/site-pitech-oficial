@@ -3,17 +3,14 @@ import '../styles/Hero.css'
 
 const defaultSlide = {
   type: 'text',
-  bg_image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=1600&q=80',
-  subtitle: 'Bem-vindo à',
-  title: 'PiTech Sistemas',
-  description: 'Soluções tecnológicas inovadoras para transformar o seu negócio. Parceria, qualidade e inovação com a PiTech Sistemas.',
-  side_image: 'https://images.unsplash.com/photo-1603969072881-b0fc7f3d77d7?w=600&q=80',
-  badge_number: '12+',
-  badge_text: 'PROJETOS',
+  bg_image: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=1600&q=80',
+  subtitle: 'PiTech Sistemas',
+  title: 'Desenvolvemos sistemas que geram resultado.',
+  description: 'Sites, plataformas SaaS e sistemas sob medida para empresas que querem crescer com tecnologia.',
   btn_primary_text: 'Ver Projetos',
   btn_primary_link: '#projetos',
-  btn_secondary_text: 'Saiba Mais',
-  btn_secondary_link: '#sobre',
+  btn_secondary_text: 'Fale Conosco',
+  btn_secondary_link: '#contato',
 }
 
 export default function Hero() {
@@ -75,17 +72,6 @@ export default function Hero() {
             </div>
           </div>
 
-          {slide.side_image && (
-            <div className="hero-image">
-              <img src={slide.side_image} alt="PiTech Sistemas" className="hero-side-img" />
-              {slide.badge_number && (
-                <div className="hero-badge">
-                  <span className="badge-number">{slide.badge_number}</span>
-                  <span className="badge-text">{slide.badge_text}</span>
-                </div>
-              )}
-            </div>
-          )}
         </div>
       )}
 

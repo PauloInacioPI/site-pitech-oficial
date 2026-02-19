@@ -3,11 +3,10 @@ import useInView from '../hooks/useInView'
 import '../styles/Experience.css'
 
 const benefits = [
-  'Equipe técnica especializada e certificada',
-  'Soluções personalizadas para cada cliente',
-  'Suporte técnico 24h dedicado',
-  'Integrações e APIs robustas e seguras',
-  'Atualizações e melhorias contínuas',
+  { icon: 'fa-code', title: 'Código próprio', desc: 'Cada projeto é desenvolvido do zero, sem templates prontos. Seu sistema é único.' },
+  { icon: 'fa-mobile-alt', title: 'Responsivo de verdade', desc: 'Funciona em qualquer tela — celular, tablet ou desktop.' },
+  { icon: 'fa-headset', title: 'Suporte direto', desc: 'Fale diretamente com quem desenvolve. Sem fila, sem robô.' },
+  { icon: 'fa-sync-alt', title: 'Melhorias contínuas', desc: 'Atualizações e ajustes inclusos enquanto durar o contrato.' },
 ]
 
 export default function Experience() {
@@ -16,33 +15,25 @@ export default function Experience() {
 
   return (
     <section className="experience-section" ref={ref}>
-      <div className="container experience-inner">
-        <div className="experience-images">
-          <div className="exp-img-grid">
-            <img src="https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=500&q=80" alt="Código" className="exp-img exp-img-1" />
-            <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=500&q=80" alt="Equipe tech" className="exp-img exp-img-2" />
-            <img src="https://images.unsplash.com/photo-1573164713988-8665fc963095?w=500&q=80" alt="Desenvolvimento" className="exp-img exp-img-3" />
-          </div>
+      <div className="container">
+        <div className="section-header">
+          <p className="section-tag">Diferenciais</p>
+          <h2 className="section-title">Por que escolher a <span className="highlight">PiTech</span>?</h2>
         </div>
-        <div className="experience-content">
-          <p className="section-tag">Por Que Nos Escolher</p>
-          <h2 className="section-title">Tecnologia <span className="highlight">Inovadora</span> Para o Seu Negócio</h2>
-          <p className="experience-desc">
-            Desenvolvemos sistemas sob medida com foco em performance e usabilidade.
-            Cada projeto é planejado com cuidado para entregar resultados reais e duradouros.
-          </p>
-          <ul className="experience-list">
-            {benefits.map((item, i) => (
-              <li
-                key={i}
-                className={`fade-up ${isVisible ? 'visible' : ''}`}
-                style={{ transitionDelay: `${i * 0.1}s` }}
-              >
-                <i className="fas fa-check-circle"></i> {item}
-              </li>
-            ))}
-          </ul>
-          <a href="#contato" className="btn btn-primary btn-lg">Saiba Mais</a>
+        <div className="experience-grid">
+          {benefits.map((item, i) => (
+            <div
+              key={i}
+              className={`exp-card fade-up ${isVisible ? 'visible' : ''}`}
+              style={{ transitionDelay: `${i * 0.1}s` }}
+            >
+              <div className="exp-card-icon">
+                <i className={`fas ${item.icon}`}></i>
+              </div>
+              <h3>{item.title}</h3>
+              <p>{item.desc}</p>
+            </div>
+          ))}
         </div>
       </div>
     </section>

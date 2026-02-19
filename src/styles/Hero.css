@@ -101,8 +101,9 @@
 }
 
 .hero-title {
-  font-family: 'Dancing Script', cursive;
-  font-size: 5rem;
+  font-family: 'Poppins', sans-serif;
+  font-size: 3.2rem;
+  font-weight: 800;
   color: var(--white);
   line-height: 1.1;
   margin-bottom: 20px;
