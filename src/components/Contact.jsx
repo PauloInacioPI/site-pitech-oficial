@@ -1,5 +1,4 @@
 import { useState } from 'react'
-import Meteors from './Meteors'
 import '../styles/Contact.css'
 
 const WHATSAPP = '5522981605315'
@@ -27,7 +26,12 @@ export default function Contact() {
 
   return (
     <section className="contact-section" id="contato">
-      <Meteors number={25} />
+      <div className="contact-video-bg">
+        <video autoPlay muted loop playsInline>
+          <source src="/contact-bg.mp4" type="video/mp4" />
+        </video>
+        <div className="contact-video-overlay" />
+      </div>
       <div className="container">
 
         {/* Header */}
@@ -59,12 +63,12 @@ export default function Contact() {
             <span className="contact-card-arrow"><i className="fas fa-arrow-right"></i></span>
           </a>
 
-          <a href="mailto:contato@pitechsistemas.com.br" className="contact-card">
+          <a href="mailto:pitechsistemas.br@gmail.com" className="contact-card">
             <div className="contact-card-icon email">
               <i className="fas fa-envelope"></i>
             </div>
             <div className="contact-card-text">
-              <strong>contato@pitechsistemas.com.br</strong>
+              <strong>pitechsistemas.br@gmail.com</strong>
               <span>Para propostas e contratos formais</span>
             </div>
             <span className="contact-card-arrow"><i className="fas fa-arrow-right"></i></span>

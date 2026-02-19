@@ -30,7 +30,7 @@ export default function Footer() {
         <div className="footer-col">
           <h4>Contato</h4>
           <p><i className="fas fa-phone"></i> (22) 98160-5315</p>
-          <p><i className="fas fa-envelope"></i> contato@pitechsistemas.com.br</p>
+          <p><i className="fas fa-envelope"></i> pitechsistemas.br@gmail.com</p>
           <p><i className="fas fa-map-marker-alt"></i> Santo Antônio de Pádua, RJ</p>
         </div>
       </div>
