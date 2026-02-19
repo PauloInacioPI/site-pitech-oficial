@@ -130,8 +130,11 @@
   }
 
   .worldmap-wrapper {
-    aspect-ratio: 1.5 / 1;
-    margin-top: 5px;
+    aspect-ratio: auto;
+    height: 60vh;
+    margin: 5px -20px 0;
+    border-radius: 0;
+    width: calc(100% + 40px);
   }
 
   .reach-bottom {
@@ -145,11 +148,6 @@
   }
 
   .worldmap-wrapper {
-    aspect-ratio: 1.2 / 1;
-  }
-
-  .worldmap-label {
-    font-size: 8px;
-    padding: 1px 5px;
+    height: 50vh;
   }
 }
