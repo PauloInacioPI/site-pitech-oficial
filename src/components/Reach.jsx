@@ -6,28 +6,28 @@ import '../styles/Reach.css'
 
 const mapDots = [
   {
-    start: { lat: -21.54, lng: -42.18, label: 'Pádua' },
-    end: { lat: -22.9068, lng: -43.1729, label: 'Rio de Janeiro' },
-  },
-  {
-    start: { lat: -21.54, lng: -42.18, label: 'Pádua' },
-    end: { lat: -23.5505, lng: -46.6333, label: 'São Paulo' },
-  },
-  {
-    start: { lat: -21.54, lng: -42.18, label: 'Pádua' },
-    end: { lat: -15.7975, lng: -47.8919, label: 'Brasília' },
-  },
-  {
-    start: { lat: -21.54, lng: -42.18, label: 'Pádua' },
-    end: { lat: 38.7223, lng: -9.1393, label: 'Lisboa' },
-  },
-  {
-    start: { lat: -21.54, lng: -42.18, label: 'Pádua' },
+    start: { lat: -21.54, lng: -42.18, label: 'Pádua, RJ' },
     end: { lat: 40.7128, lng: -74.006, label: 'New York' },
   },
   {
-    start: { lat: -21.54, lng: -42.18, label: 'Pádua' },
+    start: { lat: -21.54, lng: -42.18 },
+    end: { lat: 38.7223, lng: -9.1393, label: 'Lisboa' },
+  },
+  {
+    start: { lat: -21.54, lng: -42.18 },
     end: { lat: 35.6762, lng: 139.6503, label: 'Tóquio' },
+  },
+  {
+    start: { lat: -21.54, lng: -42.18 },
+    end: { lat: 51.5074, lng: -0.1278, label: 'Londres' },
+  },
+  {
+    start: { lat: -21.54, lng: -42.18 },
+    end: { lat: 25.2048, lng: 55.2708, label: 'Dubai' },
+  },
+  {
+    start: { lat: -21.54, lng: -42.18 },
+    end: { lat: -33.8688, lng: 151.2093, label: 'Sydney' },
   },
 ]
 
