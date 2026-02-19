@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import Meteors from './Meteors'
 import '../styles/Contact.css'
 
 const WHATSAPP = '5522981605315'
@@ -26,9 +27,7 @@ export default function Contact() {
 
   return (
     <section className="contact-section" id="contato">
-      <div className="contact-bg-glow contact-bg-glow--1" />
-      <div className="contact-bg-glow contact-bg-glow--2" />
-      <div className="contact-bg-glow contact-bg-glow--3" />
+      <Meteors number={30} />
       <div className="container">
 
         {/* Header */}
