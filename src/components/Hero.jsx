@@ -3,6 +3,7 @@ import '../styles/Hero.css'
 
 const defaultSlide = {
   type: 'text',
+  bg_video: 'https://assets.mixkit.co/videos/26774/26774-720.mp4',
   bg_image: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=1600&q=80',
   subtitle: 'PiTech Sistemas',
   title: 'Desenvolvemos sistemas que geram resultado.',
@@ -47,7 +48,19 @@ export default function Hero() {
       {/* Background slides */}
       {slides.map((s, i) => (
         <div key={i} className={`hero-bg ${i === current ? 'hero-bg-active' : ''}`}>
-          <img src={s.bg_image} alt="" className="hero-bg-img" />
+          {s.bg_video ? (
+            <video
+              className="hero-bg-img"
+              src={s.bg_video}
+              poster={s.bg_image}
+              autoPlay
+              loop
+              muted
+              playsInline
+            />
+          ) : (
+            <img src={s.bg_image} alt="" className="hero-bg-img" />
+          )}
           {s.type === 'text' && <div className="hero-overlay"></div>}
           {s.type === 'image' && <div className="hero-overlay-light"></div>}
         </div>
