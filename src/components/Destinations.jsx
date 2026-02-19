@@ -205,6 +205,8 @@ export default function Destinations() {
   const ref = useRef()
   const isVisible = useInView(ref, 0.1)
   const [selected, setSelected] = useState(null)
+  const [showAllTemplates, setShowAllTemplates] = useState(false)
+  const [showAllSaas, setShowAllSaas] = useState(false)
 
   useEffect(() => {
     if (!selected) return
@@ -278,18 +280,62 @@ export default function Destinations() {
           <h2 className="section-title">Nossas <span className="highlight">Soluções</span></h2>
         </div>
 
+        {/* ---- Templates ---- */}
         <div className="destinations-group-label">
           <i className="fas fa-store"></i> Templates de Site à Venda
         </div>
-        <div className="destinations-grid">
+
+        {/* Desktop grid */}
+        <div className={`destinations-grid ${!showAllTemplates ? 'mobile-hidden' : 'mobile-show-all'}`}>
           {renderCards(templates, 0)}
         </div>
 
+        {/* Mobile carousel */}
+        <div className={`destinations-carousel-wrapper ${showAllTemplates ? 'show-all' : ''}`}>
+          <div className="destinations-carousel">
+            {renderCards(templates, 0)}
+          </div>
+          {!showAllTemplates && (
+            <div className="carousel-scroll-hint">
+              <i className="fas fa-chevron-right"></i> Deslize para ver mais
+            </div>
+          )}
+          <button
+            className={`destinations-see-all ${showAllTemplates ? 'expanded' : ''}`}
+            onClick={() => setShowAllTemplates(!showAllTemplates)}
+          >
+            <i className="fas fa-chevron-down"></i>
+            {showAllTemplates ? 'Ver menos' : `Ver todos (${templates.length})`}
+          </button>
+        </div>
+
+        {/* ---- SaaS ---- */}
         <div className="destinations-group-label" style={{ marginTop: '3rem' }}>
           <i className="fas fa-cloud"></i> SaaS — Pagamento Mensal
         </div>
-        <div className="destinations-grid">
+
+        {/* Desktop grid */}
+        <div className={`destinations-grid ${!showAllSaas ? 'mobile-hidden' : 'mobile-show-all'}`}>
           {renderCards(saas, templates.length)}
+        </div>
+
+        {/* Mobile carousel */}
+        <div className={`destinations-carousel-wrapper ${showAllSaas ? 'show-all' : ''}`}>
+          <div className="destinations-carousel">
+            {renderCards(saas, templates.length)}
+          </div>
+          {!showAllSaas && (
+            <div className="carousel-scroll-hint">
+              <i className="fas fa-chevron-right"></i> Deslize para ver mais
+            </div>
+          )}
+          <button
+            className={`destinations-see-all ${showAllSaas ? 'expanded' : ''}`}
+            onClick={() => setShowAllSaas(!showAllSaas)}
+          >
+            <i className="fas fa-chevron-down"></i>
+            {showAllSaas ? 'Ver menos' : `Ver todos (${saas.length})`}
+          </button>
         </div>
       </div>
 
