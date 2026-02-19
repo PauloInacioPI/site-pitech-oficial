@@ -26,12 +26,9 @@ export default function Contact() {
 
   return (
     <section className="contact-section" id="contato">
-      <div className="contact-video-bg">
-        <video autoPlay muted loop playsInline>
-          <source src="/contact-bg.mp4" type="video/mp4" />
-        </video>
-        <div className="contact-video-overlay" />
-      </div>
+      <div className="contact-bg-glow contact-bg-glow--1" />
+      <div className="contact-bg-glow contact-bg-glow--2" />
+      <div className="contact-bg-glow contact-bg-glow--3" />
       <div className="container">
 
         {/* Header */}
