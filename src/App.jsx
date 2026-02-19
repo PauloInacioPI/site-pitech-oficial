@@ -8,7 +8,6 @@ import Destinations from './components/Destinations'
 import Packages from './components/Packages'
 import Contact from './components/Contact'
 import Footer from './components/Footer'
-import AllTrips from './components/AllTrips'
 import Login from './admin/components/Login'
 import AdminLayout from './admin/components/AdminLayout'
 import Dashboard from './admin/components/Dashboard'
@@ -37,7 +36,6 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<HomePage />} />
-        <Route path="/portfolio" element={<AllTrips />} />
         <Route path="/admin/login" element={<Login />} />
         <Route path="/admin" element={<AdminLayout />}>
           <Route index element={<Dashboard />} />

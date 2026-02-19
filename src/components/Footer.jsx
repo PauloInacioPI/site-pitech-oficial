@@ -8,7 +8,7 @@ export default function Footer() {
           <a href="#" className="logo footer-logo">
             <img src="/logo-pitech.jpg" alt="PiTech Sistemas" className="logo-img footer-logo-img" />
           </a>
-          <p>Transformando ideias em soluções tecnológicas desde 2010. Seu projeto começa aqui.</p>
+          <p>Transformando ideias em soluções tecnológicas. Seu projeto começa aqui.</p>
           <div className="social-links">
             <a href="https://instagram.com/pitechsistemas" target="_blank" rel="noopener noreferrer"><i className="fab fa-instagram"></i></a>
           </div>

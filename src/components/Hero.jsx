@@ -7,7 +7,7 @@ const defaultSlide = {
   subtitle: 'Bem-vindo à',
   title: 'PiTech Sistemas',
   description: 'Soluções tecnológicas inovadoras para transformar o seu negócio. Parceria, qualidade e inovação com a PiTech Sistemas.',
-  traveler_image: 'https://images.unsplash.com/photo-1603969072881-b0fc7f3d77d7?w=600&q=80',
+  side_image: 'https://images.unsplash.com/photo-1603969072881-b0fc7f3d77d7?w=600&q=80',
   badge_number: '12+',
   badge_text: 'PROJETOS',
   btn_primary_text: 'Ver Projetos',
@@ -75,9 +75,9 @@ export default function Hero() {
             </div>
           </div>
 
-          {slide.traveler_image && (
+          {slide.side_image && (
             <div className="hero-image">
-              <img src={slide.traveler_image} alt="Viajante" className="hero-traveler" />
+              <img src={slide.side_image} alt="PiTech Sistemas" className="hero-side-img" />
               {slide.badge_number && (
                 <div className="hero-badge">
                   <span className="badge-number">{slide.badge_number}</span>

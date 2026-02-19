@@ -126,7 +126,7 @@
   position: relative;
 }
 
-.hero-traveler {
+.hero-side-img {
   width: 400px;
   height: 500px;
   object-fit: cover;
@@ -239,7 +239,7 @@
 /* Responsive */
 @media (max-width: 1024px) {
   .hero-title { font-size: 3.5rem; }
-  .hero-traveler { width: 300px; height: 400px; }
+  .hero-side-img { width: 300px; height: 400px; }
   .hero-arrow { width: 40px; height: 40px; font-size: 0.95rem; }
 }
 
