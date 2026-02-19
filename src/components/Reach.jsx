@@ -6,7 +6,7 @@ import '../styles/Reach.css'
 
 const mapDots = [
   {
-    start: { lat: -21.54, lng: -42.18, label: 'Pádua, RJ' },
+    start: { lat: -21.54, lng: -42.18, label: 'Brasil' },
     end: { lat: 40.7128, lng: -74.006, label: 'New York' },
   },
   {
