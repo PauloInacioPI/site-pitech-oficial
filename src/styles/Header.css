@@ -30,13 +30,15 @@
 
 .logo-img {
   height: 50px;
-  width: auto;
-  object-fit: contain;
-  transition: height 0.3s ease;
+  width: 50px;
+  object-fit: cover;
+  border-radius: 50%;
+  transition: all 0.3s ease;
 }
 
 .header.scrolled .logo-img {
   height: 40px;
+  width: 40px;
 }
 
 .nav {
