@@ -119,7 +119,7 @@ const saas = [
     category: 'Finanças',
     type: 'SaaS',
     status: 'Online',
-    img: 'https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=800&q=80',
+    img: '/pfinancas.png',
     link: 'https://pitechfinancas.techfluxar.com/landing',
     desc: 'Plataforma financeira completa para micro e pequenas empresas. Controle total de entradas, saídas, fluxo de caixa e geração de relatórios — tudo em um painel simples e intuitivo.',
     features: [
@@ -157,7 +157,7 @@ const saas = [
     category: 'Prospecção & Marketing',
     type: 'SaaS',
     status: 'Online',
-    img: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80',
+    img: '/captaclogo.png',
     link: 'https://captacliente.techfluxar.com',
     desc: 'Sistema de prospecção ativa que encontra leads no Google Maps, conecta seu WhatsApp e dispara mensagens em massa com follow-up automático — tudo sem sair da plataforma. Ideal para quem quer escalar vendas B2B com pouco esforço manual.',
     features: [
