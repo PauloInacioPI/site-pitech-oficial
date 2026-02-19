@@ -1,8 +1,22 @@
-/* ===== DESTINATIONS ===== */
+/* ===== DESTINATIONS — DARK PREMIUM ===== */
+.destinations-section {
+  padding: 100px 0;
+  background: var(--gray-900);
+  position: relative;
+}
+
+.destinations-section .section-tag {
+  color: var(--accent);
+}
+
+.destinations-section .section-title {
+  color: var(--white);
+}
+
 .destinations-group-label {
   font-size: 1.05rem;
   font-weight: 700;
-  color: var(--primary);
+  color: var(--white);
   margin-bottom: 1.5rem;
   display: flex;
   align-items: center;
@@ -11,9 +25,8 @@
   padding-left: 12px;
 }
 
-.destinations-section {
-  padding: 100px 0;
-  background: var(--white);
+.destinations-group-label i {
+  color: var(--accent);
 }
 
 .destinations-grid {
@@ -22,22 +35,7 @@
   gap: 25px;
 }
 
-.destination-card {
-  border-radius: var(--radius-md);
-  overflow: hidden;
-  background: var(--white);
-  box-shadow: var(--shadow-sm);
-  transition: box-shadow 0.3s ease;
-  cursor: pointer;
-  position: relative;
-  transform-style: preserve-3d;
-}
-
-.destination-card:hover {
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15), 0 0 30px rgba(56, 189, 248, 0.1);
-}
-
-/* TiltCard wrapper styles */
+/* TiltCard wrapper */
 .tilt-card-wrapper {
   position: relative;
   transform-style: preserve-3d;
@@ -47,7 +45,7 @@
 .tilt-card-reflection {
   position: absolute;
   inset: 0;
-  border-radius: var(--radius-md);
+  border-radius: var(--radius-lg);
   pointer-events: none;
   z-index: 5;
 }
@@ -55,14 +53,46 @@
 .tilt-card-glow {
   position: absolute;
   inset: -1px;
-  border-radius: var(--radius-md);
+  border-radius: var(--radius-lg);
   pointer-events: none;
   z-index: -1;
 }
 
+/* ---- Card base ---- */
+.destination-card {
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  background: linear-gradient(165deg, #1a2332 0%, #0d1520 100%);
+  border: 1px solid rgba(56, 189, 248, 0.12);
+  cursor: pointer;
+  position: relative;
+  transition: border-color 0.35s ease, box-shadow 0.35s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.destination-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: var(--radius-lg);
+  background: radial-gradient(ellipse at 30% 0%, rgba(56, 189, 248, 0.06) 0%, transparent 60%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.destination-card:hover {
+  border-color: rgba(56, 189, 248, 0.35);
+  box-shadow:
+    0 20px 50px rgba(0, 0, 0, 0.4),
+    0 0 40px rgba(56, 189, 248, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+/* ---- Image area ---- */
 .destination-img {
   position: relative;
-  height: 220px;
+  height: 180px;
   overflow: hidden;
 }
 
@@ -74,23 +104,192 @@
 }
 
 .destination-card:hover .destination-img img {
-  transform: scale(1.1);
+  transform: scale(1.08);
 }
 
 .destination-icon-placeholder {
   width: 100%;
   height: 100%;
-  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+  background: linear-gradient(135deg, rgba(26, 75, 140, 0.5) 0%, rgba(13, 21, 32, 0.8) 100%);
   display: flex;
   align-items: center;
   justify-content: center;
+  position: relative;
+}
+
+.destination-icon-placeholder::after {
+  content: '';
+  position: absolute;
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(56, 189, 248, 0.12) 0%, transparent 70%);
 }
 
 .destination-icon-placeholder i {
   font-size: 3rem;
-  color: rgba(255, 255, 255, 0.35);
+  color: var(--accent);
+  opacity: 0.4;
+  position: relative;
+  z-index: 1;
 }
 
+.destination-img-gradient {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 60%;
+  background: linear-gradient(to top, #0d1520, transparent);
+  pointer-events: none;
+}
+
+/* ---- Overlay badge ---- */
+.destination-overlay {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  z-index: 2;
+}
+
+.destination-price {
+  background: rgba(56, 189, 248, 0.15);
+  color: var(--accent);
+  padding: 5px 14px;
+  border-radius: 50px;
+  font-weight: 700;
+  font-size: 0.75rem;
+  border: 1px solid rgba(56, 189, 248, 0.25);
+  backdrop-filter: blur(8px);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+/* ---- Hover CTA ---- */
+.destination-hover-cta {
+  position: absolute;
+  inset: 0;
+  background: rgba(13, 21, 32, 0.85);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  color: var(--accent);
+  font-weight: 700;
+  font-size: 0.9rem;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 3;
+}
+
+.destination-card:hover .destination-hover-cta {
+  opacity: 1;
+}
+
+/* ---- Status indicator ---- */
+.destination-status {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  z-index: 2;
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: #fff;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(8px);
+  padding: 4px 10px;
+  border-radius: 50px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.destination-status-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.destination-status.online .destination-status-dot {
+  background: #4ade80;
+  box-shadow: 0 0 6px #4ade80;
+}
+
+.destination-status.available .destination-status-dot {
+  background: var(--accent);
+  box-shadow: 0 0 6px var(--accent);
+}
+
+/* ---- Card info ---- */
+.destination-info {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  flex: 1;
+  position: relative;
+  z-index: 1;
+}
+
+.destination-info h3 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: 0;
+}
+
+.destination-category {
+  font-size: 0.78rem;
+  color: var(--gray-500);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.destination-category i {
+  color: var(--accent);
+  font-size: 0.7rem;
+}
+
+/* ---- Tech tags on card ---- */
+.destination-tech-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  margin-top: auto;
+  padding-top: 12px;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.destination-tech-tag {
+  background: rgba(56, 189, 248, 0.08);
+  color: var(--accent-light);
+  padding: 3px 9px;
+  border-radius: 5px;
+  font-size: 0.68rem;
+  font-weight: 600;
+  border: 1px solid rgba(56, 189, 248, 0.12);
+}
+
+/* ---- Price tag on card (SaaS) ---- */
+.destination-card-price {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--accent);
+}
+
+.destination-card-price i {
+  font-size: 0.7rem;
+}
+
+/* ---- Modal icon placeholder ---- */
 .proj-modal-icon-placeholder {
   width: 100%;
   height: 100%;
@@ -105,77 +304,7 @@
   color: rgba(255, 255, 255, 0.25);
 }
 
-.destination-hover-cta {
-  position: absolute;
-  inset: 0;
-  background: rgba(26, 75, 140, 0.75);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  color: #fff;
-  font-weight: 700;
-  font-size: 0.95rem;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-}
-
-.destination-card:hover .destination-hover-cta {
-  opacity: 1;
-}
-
-.destination-overlay {
-  position: absolute;
-  top: 15px;
-  right: 15px;
-  z-index: 1;
-}
-
-.destination-price {
-  background: var(--accent);
-  color: var(--gray-900);
-  padding: 6px 16px;
-  border-radius: 50px;
-  font-weight: 700;
-  font-size: 0.85rem;
-}
-
-.destination-info {
-  padding: 20px;
-}
-
-.destination-info h3 {
-  font-size: 1.15rem;
-  font-weight: 700;
-  color: var(--gray-800);
-  margin-bottom: 5px;
-}
-
-.destination-info > p {
-  font-size: 0.85rem;
-  color: var(--gray-500);
-  margin-bottom: 12px;
-}
-
-.destination-info > p i {
-  color: var(--accent);
-  margin-right: 5px;
-}
-
-.destination-meta {
-  display: flex;
-  justify-content: space-between;
-  font-size: 0.85rem;
-  color: var(--gray-500);
-  padding-top: 12px;
-  border-top: 1px solid var(--gray-200);
-}
-
-.destination-meta i {
-  color: var(--accent);
-  margin-right: 4px;
-}
-
+/* ---- Responsive ---- */
 @media (max-width: 1024px) {
   .destinations-grid { grid-template-columns: repeat(2, 1fr); }
 }

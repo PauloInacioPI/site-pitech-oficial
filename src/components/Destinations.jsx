@@ -236,6 +236,11 @@ export default function Destinations() {
               <i className={`fas ${proj.icon || 'fa-code'}`}></i>
             </div>
           )}
+          <div className="destination-img-gradient" />
+          <span className={`destination-status ${proj.status === 'Online' ? 'online' : 'available'}`}>
+            <span className="destination-status-dot"></span>
+            {proj.status}
+          </span>
           <div className="destination-overlay">
             <span className="destination-price">{proj.type}</span>
           </div>
@@ -245,7 +250,22 @@ export default function Destinations() {
         </div>
         <div className="destination-info">
           <h3>{proj.name}</h3>
-          <p><i className="fas fa-tag"></i> {proj.category}</p>
+          <p className="destination-category">
+            <i className="fas fa-tag"></i> {proj.category}
+          </p>
+          {proj.price && (
+            <span className="destination-card-price">
+              <i className="fas fa-coins"></i> {proj.price}
+            </span>
+          )}
+          <div className="destination-tech-tags">
+            {proj.tech.slice(0, 3).map((t, j) => (
+              <span key={j} className="destination-tech-tag">{t}</span>
+            ))}
+            {proj.tech.length > 3 && (
+              <span className="destination-tech-tag">+{proj.tech.length - 3}</span>
+            )}
+          </div>
         </div>
       </TiltCard>
     ))
