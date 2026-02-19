@@ -57,7 +57,7 @@ export default function WorldMap({
         ref={svgRef}
         viewBox="0 0 800 400"
         className="worldmap-svg"
-        preserveAspectRatio="xMidYMid meet"
+        preserveAspectRatio="xMidYMid slice"
       >
         <defs>
           <linearGradient id="path-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
