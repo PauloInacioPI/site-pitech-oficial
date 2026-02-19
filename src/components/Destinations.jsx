@@ -184,7 +184,7 @@ const saas = [
     category: 'Barbearia & Salão',
     type: 'SaaS',
     status: 'Online',
-    img: 'https://images.unsplash.com/photo-1503951914875-452162b0f3f1?w=800&q=80',
+    img: '/logo-barberpro.png',
     link: 'http://barberpro.techfluxar.com/',
     desc: 'Sistema de agendamento e gestão completa para barbearias. Clientes agendam online 24/7, o barbeiro gerencia sua agenda e o dono acompanha faturamento em tempo real.',
     features: [
