@@ -138,7 +138,7 @@ const saas = [
     category: 'Igrejas & Ministérios',
     type: 'SaaS',
     status: 'Online',
-    img: 'https://images.unsplash.com/photo-1516280440614-37939bbacd81?w=800&q=80',
+    img: '/conectalouvor.png',
     link: 'https://conecta-louvor.netlify.app',
     desc: 'Plataforma de gestão completa para igrejas e ministérios de louvor. Organiza repertório, escalas automáticas, membros e comunicados em um só lugar — acessível do celular ou computador.',
     features: [
